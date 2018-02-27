@@ -112,10 +112,10 @@
 <meta property="og:image" content="https://github.com/yuhanle/blogbag/raw/master/uploads/images/0342bcd3280e6eaafcd3e99e0f4bc362.jpg">
 <meta property="og:image" content="https://github.com/yuhanle/blogbag/raw/master/uploads/images/WX20171209-100043@2x.png">
 <meta property="og:image" content="https://github.com/yuhanle/blogbag/raw/master/uploads/images/WX20171209-101223@2x.png">
-<meta property="og:image" content="https://yuhanle.github.io/2017/12/09/uploads/images/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202017-12-09%20at%2010.17.01.png">
+<meta property="og:image" content="https://github.com/yuhanle/blogbag/raw/master/uploads/images/Simulator Screen Shot - iPhone 6 - 2017-12-09 at 10.17.01.png">
 <meta property="og:image" content="https://github.com/yuhanle/blogbag/raw/master/uploads/images/Simulator Screen Shot - iPhone 6 - 2017-12-09 at 10.17.01.png">
 <meta property="og:image" content="https://github.com/yuhanle/blogbag/raw/master/uploads/images/Simulator%20Screen%20Shot%20-%20iPhone%206%20-%202017-12-09%20at%2010.51.55.png">
-<meta property="og:updated_time" content="2018-02-27T07:47:06.563Z">
+<meta property="og:updated_time" content="2018-02-27T07:51:37.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Xcode9.2 编译在iOS8.1 系统上图片显示异常">
 <meta name="twitter:description" content="趁着下载Xcode 9.1 的空隙，在周末的早晨记录一下这个坑，希望能解决相同遭遇同行的困惑。  始因昨天刚发布了适配iPhone X 的最新版本，之所以使用Xcode 9.2打包，是因为早期的适配，通过Xcode 8.2打包，安装到iPhone X上显示的效果是没有适配。 这个也是无法解释的，我们开发使用的Xcode9，在适配过程中没有遇到该问题，总是升级就对了。 刚好最近苹果爹发布了Xcode">
@@ -453,7 +453,7 @@
 <h2 id="回忆"><a href="#回忆" class="headerlink" title="回忆"></a>回忆</h2><h3 id="1-删掉LaunchScreen-sb-文件"><a href="#1-删掉LaunchScreen-sb-文件" class="headerlink" title="1. 删掉LaunchScreen.sb 文件"></a>1. 删掉LaunchScreen.sb 文件</h3><p>为了适配iPhone X 的启动图，同时在启动后使用启动图做了简单的效果，决定使用LaunchImage 的方式设置启动图。</p>
 <p>在更改代码后，尝试了一下修改结果，依然是非正常的。</p>
 <p>效果如下，丝毫没有改变：</p>
-<p><img src="../uploads/images/Simulator Screen Shot - iPhone 6 - 2017-12-09 at 10.17.01.png" alt=""></p>
+<p><img src="https://github.com/yuhanle/blogbag/raw/master/uploads/images/Simulator Screen Shot - iPhone 6 - 2017-12-09 at 10.17.01.png" alt=""></p>
 <h3 id="2-Xcode-版本升级"><a href="#2-Xcode-版本升级" class="headerlink" title="2. Xcode 版本升级"></a>2. Xcode 版本升级</h3><p>这次的改动比较小，所以在排除上述的改动后，直接想到的就是可能就是这个问题，但是很少会怀疑苹果爹会挖这么大的坑，让开发者跳进去。</p>
 <p>不管如何，降级版本试试就知道是不是这个原因。</p>
 <table>
