@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>暮雨御寒</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="暮雨御寒">
+<meta property="og:url" content="https://yuhanle.github.io/page/2/index.html">
+<meta property="og:site_name" content="暮雨御寒">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="暮雨御寒">
+  
+    <link rel="alternate" href="/atom.xml" title="暮雨御寒" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">暮雨御寒</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yuhanle.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-xcrun-error" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/06/xcrun-error/" class="article-date">
+  <time datetime="2016-12-06T05:03:29.000Z" itemprop="datePublished">2016-12-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/移动技术/">移动技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/06/xcrun-error/">升级到Xcode8.3之后PackageApplication的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Xcode升级到8.3后 用命令进行打包 提示下面这个错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun: error: unable to find utility &quot;PackageApplication&quot;, not a developer tool or in PATH</span><br></pre></td></tr></table></figure>
+<p>后面根据对比发现新版的Xcode少了这个PackageApplication<br>先去找个旧版的Xcode里面copy一份过来<br>放到下面这个目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/</span><br></pre></td></tr></table></figure>
+<p>然后执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer/</span><br><span class="line">chmod +x /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/PackageApplication</span><br></pre></td></tr></table></figure>
+<p>最后附上PackageApplication下载地址：</p>
+<blockquote>
+<p>链接:<a href="https://pan.baidu.com/s/1hstjpGS" target="_blank" rel="noopener">https://pan.baidu.com/s/1hstjpGS</a>  密码:jvdv</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/12/06/xcrun-error/" data-id="cje538s0o002b3528kpos6e6y" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/升级坑/">升级坑</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-design-scan-function" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/04/design-scan-function/" class="article-date">
+  <time datetime="2016-12-04T00:00:00.000Z" itemprop="datePublished">2016-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/移动技术/">移动技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/04/design-scan-function/">如何设计扫一扫功能才能更优雅</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当前二维码在生活中随处可见，他的功能无需多言，彻底的改变了消费者的使用习惯，提升了用户的操作体验，同时也拉近了人与人，人与物乃至物与物之间的距离
+        
+          <p class="article-more-link">
+            <a href="/2016/12/04/design-scan-function/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/12/04/design-scan-function/" data-id="cje538s00001535283afpnqk2" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/扫一扫/">扫一扫</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-oc-js-inpourjs-in-goodtime" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/30/oc-js-inpourjs-in-goodtime/" class="article-date">
+  <time datetime="2016-11-30T00:00:00.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/移动技术/">移动技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/30/oc-js-inpourjs-in-goodtime/">ObjC&amp;JavaScript 交互，在恰当的时机注入对象</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>警告：文章中提到的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)webView:(id)unuse didCreateJavaScriptContext:(JSContext *)ctx forFrame:(id)frame;</span><br></pre></td></tr></table></figure>
+<p>方法涉及私有API，有网友反馈说审核会被拒绝，希望看到的朋友们慎用</p>
+<p>移动端项目开发中，免不了出现 Native App （以下简称Native）和 H5 页面（以下简称H5）的交互，网络上有很多第三方框架，比如<a href="https://github.com/marcuswestin/WebViewJavascriptBridge" target="_blank" rel="noopener">WebViewJavascriptBridge</a>，对于一些小的项目需求来说，其实不用那么麻烦，我们还是
+        
+          <p class="article-more-link">
+            <a href="/2016/11/30/oc-js-inpourjs-in-goodtime/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/11/30/oc-js-inpourjs-in-goodtime/" data-id="cje538s0b001q3528mltykn2l" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动技术/">移动技术</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-passing-silent-silent-memories" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/21/passing-silent-silent-memories/" class="article-date">
+  <time datetime="2016-08-21T05:23:00.000Z" itemprop="datePublished">2016-08-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/散文/">散文</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/21/passing-silent-silent-memories/">无言逝水回忆无声</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>水的存在，延续了人的生命，却难以洗涤人的回忆。</p>
+<p>在我们山里，每一个小的村落，某棵树荫下，就会有一口井，那是山泉。村西头的山脚下，那里地势稍高，有一条田间小路，来来往往的人们挑着木桶，路上湿漉漉的，仿佛刚下过雨，记忆全都小心翼翼的在这条路上穿梭，生怕碰到路人。</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/21/passing-silent-silent-memories/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/08/21/passing-silent-silent-memories/" data-id="cje538s0f001x3528npnpimtr" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/散文/">散文</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-i-know-more-more" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/20/i-know-more-more/" class="article-date">
+  <time datetime="2016-05-20T01:00:00.000Z" itemprop="datePublished">2016-05-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/20/i-know-more-more/">我知道的太多</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>正因为我们知道的太多，所以才会觉得压抑</p>
+<p>许久没有写东西，有时候在想，思维会不会已经枯竭，除了简单的因为所以，完全忘了押韵。</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/20/i-know-more-more/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/05/20/i-know-more-more/" data-id="cje538rzz001235288re55ne1" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/吐槽/">吐槽</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-config-ss-more-sicene-net" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/04/config-ss-more-sicene-net/" class="article-date">
+  <time datetime="2016-03-04T01:00:00.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术分享/">技术分享</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/04/config-ss-more-sicene-net/">配置 Shadowsocks 让多客户端科学上网~</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直再找一些可以用手机翻墙的工具或者免费的vpn账号，但是效果都很差，其实去年就购买了Shadowsocks的服务作为查找资料的工具，不过苦于手机不能上外网，所以今天共享一下这个教程，顺便记录一下！
+        
+          <p class="article-more-link">
+            <a href="/2016/03/04/config-ss-more-sicene-net/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/03/04/config-ss-more-sicene-net/" data-id="cje538rzg000a3528fo4xe33s" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术分享/">技术分享</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/科学上网/">科学上网</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-about-ios-net-manager-idea" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/02/25/about-ios-net-manager-idea/" class="article-date">
+  <time datetime="2016-02-25T02:00:00.000Z" itemprop="datePublished">2016-02-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS学习/">iOS学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/25/about-ios-net-manager-idea/">关于iOS工程中网络请求管理的畅想</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直在想一些烧脑的逻辑问题。</p>
+<p>在此之前，我们抛出了<a href="https://yuhanle.github.io/2016/01/04/a-perfect-package-afn-requests-demo/">一个网络请求框架</a>，在这个框架中，能够很清晰的管理每一个请求，每一个回应，以及统一处理，特殊处理等，但对于开发人员来讲，这只是一个easy的文件目录而已。
+        
+          <p class="article-more-link">
+            <a href="/2016/02/25/about-ios-net-manager-idea/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/02/25/about-ios-net-manager-idea/" data-id="cje538rz300013528ugeo98bl" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS学习/">iOS学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-about-ble-intelligent-hd-demo-detailed" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/10/about-ble-intelligent-hd-demo-detailed/" class="article-date">
+  <time datetime="2016-01-10T09:00:00.000Z" itemprop="datePublished">2016-01-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS学习/">iOS学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/10/about-ble-intelligent-hd-demo-detailed/">一个关于蓝牙4.0的智能硬件Demo详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写这篇详解是因为最近很多人都在问相关问题，但是上篇文章<a href="https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/">iOS-BLE蓝牙开发持续更新</a>已经过去半年，很多东西已经开始遗忘，今天重新拾起，并在Demo中新添了具体功能和详细注释，顺便屡一下当初设计的思路，我想用图片来解释会更好理解。
+        
+          <p class="article-more-link">
+            <a href="/2016/01/10/about-ble-intelligent-hd-demo-detailed/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/01/10/about-ble-intelligent-hd-demo-detailed/" data-id="cje538rz800043528z6n88vkz" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS学习/">iOS学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-a-perfect-package-afn-requests-demo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/04/a-perfect-package-afn-requests-demo/" class="article-date">
+  <time datetime="2016-01-04T03:29:00.000Z" itemprop="datePublished">2016-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS学习/">iOS学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/04/a-perfect-package-afn-requests-demo/">一个完美封装AFNetworking的网络请求Demo</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个完美封装AFNetworking的网络请求Demo，其实我们的理想情况是希望API的数据下发之后就能够直接被View所展示。首先要说的是，这种情况非常少。另外，这种做法使得View和API联系紧密，也是我们不希望发生的。</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/01/04/a-perfect-package-afn-requests-demo/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/01/04/a-perfect-package-afn-requests-demo/" data-id="cje538ryy00003528erffmat2" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS学习/">iOS学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cornerstone-merge-operation-explain" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/27/cornerstone-merge-operation-explain/" class="article-date">
+  <time datetime="2015-09-27T01:00:00.000Z" itemprop="datePublished">2015-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS学习/">iOS学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/27/cornerstone-merge-operation-explain/">Cornerstone Merge操作详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Cornerstone是最好用的Mac端版本控制工具，没有之一。<br>尾部附下载链接，类似其他指令就不说了。
+        
+          <p class="article-more-link">
+            <a href="/2015/09/27/cornerstone-merge-operation-explain/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2015/09/27/cornerstone-merge-operation-explain/" data-id="cje538rzo000i35281si0d52n" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS学习/">iOS学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Beego-入门/">Beego 入门</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS学习/">iOS学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大前端/">大前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/小诗/">小诗</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发工具/">开发工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术分享/">技术分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/持续集成/">持续集成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/散文/">散文</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动技术/">移动技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/自动化测试/">自动化测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/见字如面/">见字如面</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Beego/">Beego</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quality/">Quality</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonar/">Sonar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WDA/">WDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS学习/">iOS学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/升级坑/">升级坑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吐槽/">吐槽</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小诗/">小诗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情随笔/">心情随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/思考/">思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/扫一扫/">扫一扫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术分享/">技术分享</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术坑/">技术坑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/散文/">散文</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学上网/">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动技术/">移动技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/见字如面/">见字如面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Beego/" style="font-size: 10px;">Beego</a> <a href="/tags/GCD/" style="font-size: 12.5px;">GCD</a> <a href="/tags/Quality/" style="font-size: 10px;">Quality</a> <a href="/tags/Sonar/" style="font-size: 10px;">Sonar</a> <a href="/tags/WDA/" style="font-size: 10px;">WDA</a> <a href="/tags/electron/" style="font-size: 10px;">electron</a> <a href="/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/tags/iOS学习/" style="font-size: 20px;">iOS学习</a> <a href="/tags/升级坑/" style="font-size: 12.5px;">升级坑</a> <a href="/tags/吐槽/" style="font-size: 15px;">吐槽</a> <a href="/tags/小诗/" style="font-size: 10px;">小诗</a> <a href="/tags/心情随笔/" style="font-size: 10px;">心情随笔</a> <a href="/tags/思考/" style="font-size: 17.5px;">思考</a> <a href="/tags/扫一扫/" style="font-size: 10px;">扫一扫</a> <a href="/tags/技术分享/" style="font-size: 10px;">技术分享</a> <a href="/tags/技术坑/" style="font-size: 10px;">技术坑</a> <a href="/tags/散文/" style="font-size: 10px;">散文</a> <a href="/tags/科学上网/" style="font-size: 10px;">科学上网</a> <a href="/tags/移动技术/" style="font-size: 10px;">移动技术</a> <a href="/tags/见字如面/" style="font-size: 10px;">见字如面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/03/how-to-install-web-driver-agent-on-device/">iOS 真机调试如何安装 WebDriverAgent</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/16/BigFE/electron-abc/">electron 入门学习</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/09/xocde9-2-and-iOS-8-1-image-unnormal/">Xcode9.2 编译在iOS8.1 系统上图片显示异常</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/06/macos-high-sierra-with-cocoapods/">升级 macOS High Sierra 后与 Cocoapods 的兼容问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/beego-study-newproject/">Beego 入门指南（一）如何新建项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 煜寒了<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

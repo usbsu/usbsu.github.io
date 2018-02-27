@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>暮雨御寒</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="暮雨御寒">
+<meta property="og:url" content="https://yuhanle.github.io/index.html">
+<meta property="og:site_name" content="暮雨御寒">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="暮雨御寒">
+  
+    <link rel="alternate" href="/atom.xml" title="暮雨御寒" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">暮雨御寒</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yuhanle.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-how-to-install-web-driver-agent-on-device" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/03/how-to-install-web-driver-agent-on-device/" class="article-date">
+  <time datetime="2018-01-03T10:30:47.000Z" itemprop="datePublished">2018-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/自动化测试/">自动化测试</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/03/how-to-install-web-driver-agent-on-device/">iOS 真机调试如何安装 WebDriverAgent</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WechatIMG19.png" alt=""></p>
+<p>近期，微信<a href="https://github.com/wangshub/wechat_jump_game" target="_blank" rel="noopener">跳一跳外挂</a>火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。</p>
+<p><img src="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/wda.png" alt="WDA 工作原理"> </p>
+<p>其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 <a href="https://testerhome.com/topics/7220" target="_blank" rel="noopener">WebDriverAgent · TesterHome</a>，下面就按照这篇教程，各个击破真机调试WDA 的问题：</p>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/facebook/WebDriverAgent.git</span><br></pre></td></tr></table></figure>
+<p>切换到WDA 根目录，运行初始化脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd WebDriverAgent</span><br><span class="line">./Scripts/bootstrap.sh</span><br></pre></td></tr></table></figure>
+<p>以上脚本是安装依赖库，同时使用npm 打包响应的js 文件。感兴趣的同学可以浏览脚本文件，同级目录下还有一个<code>build.sh</code>，也可以直接执行该脚本来编译安装WDA。当然，初次接触，希望一步步操作的话会好一些。</p>
+<p>如果中途出现错误，需要先解决，否则接下来的操作都无法进行。</p>
+<h1 id="编译运行"><a href="#编译运行" class="headerlink" title="编译运行"></a>编译运行</h1><p>接下来，通过Xcode 打开<code>WebDriverAgent.xcodeproj</code> 这个文件。</p>
+<p>可以先尝试编译一下，方便定位目前存在的问题，使用组合键或者通过鼠标操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command + b</span><br></pre></td></tr></table></figure>
+<p>这个时候，肯定会有提示配置证书的问题，真机调试证书是必须设置的。可以设置个人开发者免费证书，或者其他付费证书。</p>
+<p><img src="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WX20180103-141257.png" alt=""></p>
+<p>然后选择<code>WebDriverAgentRunner</code> 这个Target 和 真机设备，执行测试。组合键<code>command+u</code>，或从菜单栏Product 中通过鼠标操作</p>
+<blockquote>
+<p>一切正常的话，手机上会出现一个无图标的WebDriverAgent应用，启动之后，马上又返回到桌面。这是很正常的不要奇怪。</p>
+</blockquote>
+<p>应用教程中的原话，上述现象正常，但是也有可能会在控制台报错，从而无法打印出ip 地址。</p>
+<p>当把所有的流程重新捋一遍，你会发现，根本发现不了哪一步做错了，我遇到的情况就是，一直停留在控制台的那里，不会出现奇迹。经过一番搜索，发现<a href="https://testerhome.com/topics/9666" target="_blank" rel="noopener">有个帖子</a>里的警告提示，我决定放手一搏！</p>
+<blockquote>
+<p>你们以为这样就能运行吗？</p>
+<p>并不是！<br>最关键一步来了：</p>
+<p>你要用数据线连着电脑重启你的手机！！！！</p>
+<p>你要用数据线连着电脑重启你的手机！！！！</p>
+<p>你要用数据线连着电脑重启你的手机！！！！</p>
+<p>重要的话要说三遍！</p>
+</blockquote>
+<p>反正是在保证数据线连接的情况下，重启一下手机，然后重新build 就成功看到ip 地址！而且在以后操作中，这种情况还会复现，所以重启手机吧，不用浪费无辜的时间研究~</p>
+<p>通过上面给出的IP和端口，加上<code>/status</code>合成一个url地址。例如<code>http://10.0.0.1:8100/status</code>，然后浏览器打开。如果出现一串JSON输出，说明WDA安装成功了。</p>
+<h1 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h1><p>有些国产的iPhone机器通过手机的IP和端口还不能访问，此时需要将手机的端口转发到Mac上。关于这个问题，我是通过端口转发才看到效果，所以你也应该会遇到同样的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew install imobiledevice</span><br><span class="line">$ iproxy 8100 8100 [4c47766e78f9d84e1da55b07d69f2747e9fb4f71]</span><br></pre></td></tr></table></figure>
+<p>使用iproxy –help 可以查到更具体的用法。 这时通过访问<code>http://localhost:8100/status</code> 确认WDA是否运行成功。</p>
+<p>而inspector的地址是<code>http://localhost:8100/inspector</code>， inspector是用来查看UI的图层，方便写测试脚本用。</p>
+<blockquote>
+<p>注：端口转发后，域名不再是IP 地址，而是你的本机IP或者使用<code>localhost</code>+ 端口号</p>
+</blockquote>
+<h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h1><p>完成上述操作以后，可以随意开启应用内的某个应用，就能看到如下效果。</p>
+<p><img src="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WX20180103-143535.png" alt=""></p>
+<p>这里结合 <a href="https://testerhome.com/topics/7840" target="_blank" rel="noopener">Appium Desktop</a> 一起食用，效果更佳~</p>
+<p>Good luck!!!</p>
+<h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a>实战</h1><p>相信你会对这个感兴趣，通过WDA 做自动化测试，恩！</p>
+<p>接下来演示一下怎么用ATX打开iPhone自带的计时器，开始然后退出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/local/bin/python3</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> atx</span><br><span class="line"></span><br><span class="line">d = atx.connect(<span class="string">"http://localhost:8100"</span>)</span><br><span class="line">d.start_app(<span class="string">"com.apple.mobiletimer"</span>)</span><br><span class="line">d(text=<span class="string">u'计时器'</span>).click()</span><br><span class="line">d(text=<span class="string">u'开始计时'</span>).click()</span><br><span class="line">d(text=<span class="string">u'取消'</span>).click()</span><br><span class="line">d.stop_app()</span><br></pre></td></tr></table></figure>
+<p>执行以上代码即可体验</p>
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>最后墙裂推荐基于Python自动化框架地址 <a href="https://github.com/NetEaseGame/ATX" target="_blank" rel="noopener">https://github.com/NetEaseGame/ATX</a></p>
+<p>Xcode问题多多，愿WDA与你同在。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://testerhome.com/topics/7220" target="_blank" rel="noopener">ATX 文档 - iOS 真机如何安装 WebDriverAgent
+</a></p>
+<p><a href="https://testerhome.com/topics/8820#reply47" target="_blank" rel="noopener">Macaca App Inspector 2.0 发布</a></p>
+<p><a href="https://testerhome.com/topics/7840" target="_blank" rel="noopener">Appium Desktop 简单介绍 —— xcodebuild failed with code 65 解决</a></p>
+<p><a href="https://testerhome.com/topics/9666" target="_blank" rel="noopener">WebDriverAgent 天坑记</a></p>
+<p><a href="https://testerhome.com/topics/7324" target="_blank" rel="noopener">启动 WebDriverAgent 后再启动 appium，运行脚本一直卡在 Waiting for WebDriverAgent to start on device</a></p>
+<p><a href="https://testerhome.com/topics/6331" target="_blank" rel="noopener">ATX 支持 iOS10 手机测试 方法说明</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2018/01/03/how-to-install-web-driver-agent-on-device/" data-id="cje538s02001a3528j756fmwb" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WDA/">WDA</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-BigFE/electron-abc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/16/BigFE/electron-abc/" class="article-date">
+  <time datetime="2017-12-16T06:48:05.000Z" itemprop="datePublished">2017-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/大前端/">大前端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/16/BigFE/electron-abc/">electron 入门学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/electron.jpeg" alt=""></p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>目前，使用前端技术开发桌面应用越来越成熟，所以前端同学也可以参与桌面应用的开发。目前类似的工具有electron，NW.js等。刚好最近在学习Vue，简单做了些入门页面，B/S 的方式虽然能够跨平台使用，但是对于不折腾会死的周末来说，尝试着踩坑才是最充实的。</p>
+<p>这里我们简单介绍下 <a href="https://electron.org.cn/" target="_blank" rel="noopener">Electron</a>的使用。</p>
+<p>Electron 中文网上对于他的功能描述的很直观，也很吸引众多开发者的探索。</p>
+<center><br><h4>比你想象的更容易</h4><br></center>
+
+<blockquote>
+<p>如果您能够搭建一个网站，那么您就可以搭建一个桌面应用。 Electron是这样一个框架，它可以帮助您使用JavaScript/Html/Css等网站相关技术，非常快速而容易地搭建一个原生应用。这样，您就可以聚焦于您的业务系统本身了，然后把剩下的那些难题交给我们好了。</p>
+</blockquote>
+<h2 id="如何开发"><a href="#如何开发" class="headerlink" title="如何开发"></a>如何开发</h2><p>简单来说，Electron 是基于Node.js 和Chromium 做的一个工具，通过将前端页面加壳的方式，实现桌面开发，并且支持跨平台。</p>
+<p>他是一个工具，除了官方文档上的基础配置，开发相关的只是主要是是前端业务相关，对于工具的使用看文档，论坛交流和更多Demo 的学习足够。</p>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>一个最简单的Electron 项目包含三个文件，package.json, index.html, main,js。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">|-- package.json Node.js 项目的配置文件</span><br><span class="line">|-- index.html 桌面应用的业务</span><br><span class="line">|-- main.js 应用的启动入口文件</span><br></pre></td></tr></table></figure>
+<p>其中，核心的文件是index.html 和main.js。</p>
+<p>回到最近写的小工具，目录结构如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">|-- voicepkgtool </span><br><span class="line">|	|-- config webpack配置文件</span><br><span class="line">|	|	|-- dev.env.js </span><br><span class="line">|	|	|-- index.js</span><br><span class="line">|	|-- dist 发布</span><br><span class="line">|	|-- node_modules</span><br><span class="line">|	|-- samples Node.js Server</span><br><span class="line">|	|-- src 源码目录</span><br><span class="line">|	|-- main.js Electron 应用入口</span><br><span class="line">|	|-- package.json	配置文件</span><br></pre></td></tr></table></figure>
+<h2 id="安装使用"><a href="#安装使用" class="headerlink" title="安装使用"></a>安装使用</h2><p>推荐查阅官网的教程<a href="https://electron.org.cn/vue/index.html" target="_blank" rel="noopener">Electron-vue</a></p>
+<p>我们这个简单的Web 项目部署以后，希望可以通过Electron 打包跨屏体运行，所以只需要简单几步配置就搞定！</p>
+<h3 id="安装Electron"><a href="#安装Electron" class="headerlink" title="安装Electron"></a>安装Electron</h3><p>在使用前，需要先安装相关模块，然后在项目中引入使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 核心模块</span><br><span class="line">npm install electron -s</span><br><span class="line">// 打包模块 | 也可以使用electron-builder</span><br><span class="line">npm install electron-packager -s</span><br></pre></td></tr></table></figure>
+<h3 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h3><p>在执行Electron 相关命令并启动应用时，需要一个入口文件，就是上面提到的main.js，文件包含整个应用的生命周期回调，同时也用来存放应用相关配置信息。</p>
+<p>以下便是我们为目前这个小项目编辑的main.js 文件，API 可以参考官方教程。</p>
+<p>注释也可以清楚的了解每一行的含义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">const electron = require(&apos;electron&apos;)</span><br><span class="line">// Module to control application life.</span><br><span class="line">const app = electron.app</span><br><span class="line">// Module to create native browser window.</span><br><span class="line">const BrowserWindow = electron.BrowserWindow</span><br><span class="line"></span><br><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">const url = require(&apos;url&apos;)</span><br><span class="line"></span><br><span class="line">// Keep a global reference of the window object, if you don&apos;t, the window will</span><br><span class="line">// be closed automatically when the JavaScript object is garbage collected.</span><br><span class="line">let mainWindow</span><br><span class="line"></span><br><span class="line">function createWindow () &#123;</span><br><span class="line">  // Create the browser window.</span><br><span class="line">  mainWindow = new BrowserWindow(&#123;width: 800, height: 600&#125;)</span><br><span class="line"></span><br><span class="line">  // and load the index.html of the app.</span><br><span class="line">  mainWindow.loadURL(url.format(&#123;</span><br><span class="line">    pathname: path.join(__dirname, &apos;dist/index.html&apos;),</span><br><span class="line">    protocol: &apos;file:&apos;,</span><br><span class="line">    slashes: true</span><br><span class="line">  &#125;))</span><br><span class="line"></span><br><span class="line">  // Open the DevTools.</span><br><span class="line">  // mainWindow.webContents.openDevTools()</span><br><span class="line"></span><br><span class="line">  // Emitted when the window is closed.</span><br><span class="line">  mainWindow.on(&apos;closed&apos;, function () &#123;</span><br><span class="line">    // Dereference the window object, usually you would store windows</span><br><span class="line">    // in an array if your app supports multi windows, this is the time</span><br><span class="line">    // when you should delete the corresponding element.</span><br><span class="line">    mainWindow = null</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// This method will be called when Electron has finished</span><br><span class="line">// initialization and is ready to create browser windows.</span><br><span class="line">// Some APIs can only be used after this event occurs.</span><br><span class="line">app.on(&apos;ready&apos;, createWindow)</span><br><span class="line"></span><br><span class="line">// Quit when all windows are closed.</span><br><span class="line">app.on(&apos;window-all-closed&apos;, function () &#123;</span><br><span class="line">  // On OS X it is common for applications and their menu bar</span><br><span class="line">  // to stay active until the user quits explicitly with Cmd + Q</span><br><span class="line">  if (process.platform !== &apos;darwin&apos;) &#123;</span><br><span class="line">    app.quit()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.on(&apos;activate&apos;, function () &#123;</span><br><span class="line">  // On OS X it&apos;s common to re-create a window in the app when the</span><br><span class="line">  // dock icon is clicked and there are no other windows open.</span><br><span class="line">  if (mainWindow === null) &#123;</span><br><span class="line">    createWindow()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// In this file you can include the rest of your app&apos;s specific main process</span><br><span class="line">// code. You can also put them in separate files and require them here.</span><br></pre></td></tr></table></figure>
+<h3 id="编辑脚本"><a href="#编辑脚本" class="headerlink" title="编辑脚本"></a>编辑脚本</h3><p>入口文件的路径，我们需要通过键值对的方式，新增在package.json 文件里，同时可以在Scripts 里添加启动、编译以及打包的脚本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;voicepkgtool&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;A Vue.js project&quot;,</span><br><span class="line">  &quot;author&quot;: &quot;shibo.wen@ti-link.com.cn&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;main.js&quot;,	// 入口文件路径 不可缺少 否则执行时会报错</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;start&quot;: &quot;electron .&quot;,		// 启动应用</span><br><span class="line">    &quot;dev&quot;: &quot;webpack-dev-server --inline --hot --env.dev&quot;,</span><br><span class="line">    &quot;build&quot;: &quot;rimraf dist &amp;&amp; webpack -p --progress --hide-modules&quot;,</span><br><span class="line">    &quot;build:all&quot;: &quot;electron-packager . voicepkgtool --platform=all --arch=all -version=0.0.1 --icon=app.ico --out=Staging --version-string.ProductName=Telar Converter --version-string.ProductVersion=0.5.0&quot;,</span><br><span class="line">    &quot;package&quot;: &quot;electron-packager ./ voicepkgtool --all --out ./ --version 0.0.1 --overwrite&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;axios&quot;: &quot;^0.17.1&quot;,</span><br><span class="line">    &quot;checksum&quot;: &quot;^0.1.1&quot;,</span><br><span class="line">    &quot;electron&quot;: &quot;^1.7.9&quot;,</span><br><span class="line">    &quot;electron-packager&quot;: &quot;^10.1.0&quot;,</span><br><span class="line">    &quot;element-ui&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;file-saver&quot;: &quot;^1.3.3&quot;,</span><br><span class="line">    &quot;jszip&quot;: &quot;^3.1.5&quot;,</span><br><span class="line">    &quot;qs&quot;: &quot;^6.5.1&quot;,</span><br><span class="line">    &quot;querystring&quot;: &quot;^0.2.0&quot;,</span><br><span class="line">    &quot;vue&quot;: &quot;^2.5.2&quot;,</span><br><span class="line">    &quot;vue-simple-uploader&quot;: &quot;^0.3.0&quot;,</span><br><span class="line">    &quot;webpack-merge&quot;: &quot;^4.1.1&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;engines&quot;: &#123;</span><br><span class="line">    &quot;node&quot;: &quot;&gt;=6&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;autoprefixer&quot;: &quot;^6.6.0&quot;,</span><br><span class="line">    &quot;babel-core&quot;: &quot;^6.24.1&quot;,</span><br><span class="line">    &quot;babel-loader&quot;: &quot;^6.4.0&quot;,</span><br><span class="line">    &quot;babel-preset-vue-app&quot;: &quot;^1.2.0&quot;,</span><br><span class="line">    &quot;css-loader&quot;: &quot;^0.27.0&quot;,</span><br><span class="line">    &quot;file-loader&quot;: &quot;^0.10.1&quot;,</span><br><span class="line">    &quot;html-webpack-plugin&quot;: &quot;^2.24.1&quot;,</span><br><span class="line">    &quot;postcss-loader&quot;: &quot;^1.3.3&quot;,</span><br><span class="line">    &quot;rimraf&quot;: &quot;^2.5.4&quot;,</span><br><span class="line">    &quot;style-loader&quot;: &quot;^0.13.2&quot;,</span><br><span class="line">    &quot;url-loader&quot;: &quot;^0.5.8&quot;,</span><br><span class="line">    &quot;vue-loader&quot;: &quot;^13.3.0&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.5.2&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^2.4.1&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^2.4.2&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接着我们只需要执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
+<p>一个跨屏台的应用就展现在桌面上。</p>
+<h3 id="构建打包"><a href="#构建打包" class="headerlink" title="构建打包"></a>构建打包</h3><p>进阶教程参考<a href="https://electron.org.cn/build.html" target="_blank" rel="noopener">Electron构建打包</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">electron-packager . --overwrite --platform=darwin --arch=x64 --out=out --icon=assets/app-icon/mac/app.icns --osx-sign.identity=&apos;Developer ID Application: GitHub&apos; --extend-info=assets/mac/info.plist</span><br><span class="line"></span><br><span class="line">electron-packager . --overwrite --platform=win32 --arch=ia32 --out=out --icon=assets/app-icon/win/app.ico</span><br><span class="line"></span><br><span class="line">electron-packager . --overwrite --platform=linux --arch=x64 --out=out</span><br></pre></td></tr></table></figure>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="Electron-不支持XP-系统"><a href="#Electron-不支持XP-系统" class="headerlink" title="Electron 不支持XP 系统"></a>Electron 不支持XP 系统</h3><p>如果有考虑在XP 系统上使用，不用考虑了</p>
+<p>参考：<a href="https://js3.org/question/43" target="_blank" rel="noopener">https://js3.org/question/43</a></p>
+<h3 id="安装包大小"><a href="#安装包大小" class="headerlink" title="安装包大小"></a>安装包大小</h3><p>一般情况下，通过packager或者builder打包完毕后，exe、dll、asr等文件总和的大小为100M左右。而通过builder制作的nsis安装包，一般为32M左右。通过innosetup生成的安装包，一般为31M左右。总体来说，体积较大。但是您通过一系列的手段可以有效的减少它的体积，到一个可接受的范围。</p>
+<h3 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h3><p>浏览器窗口的开发工具仅能调试渲染器的进程脚本（比如 web 页面）。为了提供一个可以调试主进程 的方法，Electron 提供了 –debug 和 –debug-brk 开关。</p>
+<p>使用如下的命令行开关来调试 Electron 的主进程：</p>
+<p>–debug=[port]</p>
+<p>当这个开关用于 Electron 时，它将会监听 V8 引擎中有关 port 的调试器协议信息。 默认的 port 是 5858。</p>
+<p>–debug-brk=[port]</p>
+<p>就像 –debug 一样，但是会在第一行暂停脚本运行。</p>
+<h2 id="Electron-常见问题"><a href="#Electron-常见问题" class="headerlink" title="Electron 常见问题"></a>Electron 常见问题</h2><p>如何解决下载源的时候timeout问题<br>对于国内的网络用户，请切换npm源为淘宝的cnpm源，切换方法为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org/</span><br><span class="line">npm config set electron_mirror http://npm.taobao.org/mirrors/electron/</span><br></pre></td></tr></table></figure>
+<p>另外，对于文件构建时的timeout问题，需要您下载对应的文件到本地缓存文件夹。具体的下载切换办法，可以点击这里查看：<a href="https://js3.org/article/7" target="_blank" rel="noopener">https://js3.org/article/7</a></p>
+<p>更多问题参考：<a href="https://electron.org.cn/doc/faq.html" target="_blank" rel="noopener">Electron 常见问题</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/12/16/BigFE/electron-abc/" data-id="cje538s1g003r3528b2kp0m97" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/electron/">electron</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-xocde9-2-and-iOS-8-1-image-unnormal" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/09/xocde9-2-and-iOS-8-1-image-unnormal/" class="article-date">
+  <time datetime="2017-12-09T01:52:47.000Z" itemprop="datePublished">2017-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/开发工具/">开发工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/09/xocde9-2-and-iOS-8-1-image-unnormal/">Xcode9.2 编译在iOS8.1 系统上图片显示异常</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>趁着下载Xcode 9.1 的空隙，在周末的早晨记录一下这个坑，希望能解决相同遭遇同行的困惑。</p>
+<p><img src="../uploads/images/0342bcd3280e6eaafcd3e99e0f4bc362.jpg" alt=""></p>
+<h2 id="始因"><a href="#始因" class="headerlink" title="始因"></a>始因</h2><p>昨天刚发布了适配iPhone X 的最新版本，之所以使用Xcode 9.2打包，是因为早期的适配，通过Xcode 8.2打包，安装到iPhone X上显示的效果是没有适配。</p>
+<p>这个也是无法解释的，我们开发使用的Xcode9，在适配过程中没有遇到该问题，总是升级就对了。</p>
+<p>刚好最近苹果爹发布了Xcode 9.2，就索性升级到最新版本。</p>
+<p>持续化集成就是方便，代码提交以后，喝杯咖啡的工具，就上传成功，等待审核。</p>
+<p>也就是在昨天中午，收到审核通过的提醒，很奇怪，这个时候应该是他们休息的时间。</p>
+<p>然后，就非常肯定，因为在适配的过程中，特意找了两个iPhone X的用户帮助测试体验。随着审核通过，就很快发布出去。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>大概下午3点钟，距离发布版本只过了3 个小时左右。收到客服妹子的一个大写的问号。</p>
+<p><img src="../uploads/images/WX20171209-100043@2x.png" alt=""></p>
+<p>这一瞬间，整个人都是懵的，慌忙让用户重启APP，重启系统，升级系统，最后被用户拒绝掉。</p>
+<p>既然是必现的问题，不能将问题推到升级系统上，该解决还是要尽快解决的。</p>
+<p>接着就开始着手另外一个项目，晚上回到家开始思考，问题存在的版本近期究竟改了什么内容。同时也下载了iOS8.1 的模拟器，使用最新版本的Xcode 运行看了下效果，确实如此是复现的。</p>
+<p>所以，要马上改变态度，和客服同志搞好关系，早点认错才能走得更远。</p>
+<p><img src="../uploads/images/WX20171209-101223@2x.png" alt=""></p>
+<h2 id="回忆"><a href="#回忆" class="headerlink" title="回忆"></a>回忆</h2><h3 id="1-删掉LaunchScreen-sb-文件"><a href="#1-删掉LaunchScreen-sb-文件" class="headerlink" title="1. 删掉LaunchScreen.sb 文件"></a>1. 删掉LaunchScreen.sb 文件</h3><p>为了适配iPhone X 的启动图，同时在启动后使用启动图做了简单的效果，决定使用LaunchImage 的方式设置启动图。</p>
+<p>在更改代码后，尝试了一下修改结果，依然是非正常的。</p>
+<p>效果如下，丝毫没有改变：</p>
+<p><img src="../uploads/images/Simulator Screen Shot - iPhone 6 - 2017-12-09 at 10.17.01.png" alt=""></p>
+<h3 id="2-Xcode-版本升级"><a href="#2-Xcode-版本升级" class="headerlink" title="2. Xcode 版本升级"></a>2. Xcode 版本升级</h3><p>这次的改动比较小，所以在排除上述的改动后，直接想到的就是可能就是这个问题，但是很少会怀疑苹果爹会挖这么大的坑，让开发者跳进去。</p>
+<p>不管如何，降级版本试试就知道是不是这个原因。</p>
+<table>
+<thead>
+<tr>
+<th>Xcode9.2</th>
+<th>Xcode9.1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="../uploads/images/Simulator Screen Shot - iPhone 6 - 2017-12-09 at 10.17.01.png" alt="修改前"></td>
+<td><img src="../uploads/images/Simulator Screen Shot - iPhone 6 - 2017-12-09 at 10.51.55.png" alt="修改后"></td>
+</tr>
+</tbody>
+</table>
+<p>通过上述对比，确定问题就处在Xcode 版本上。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="1-等苹果爹更新"><a href="#1-等苹果爹更新" class="headerlink" title="1. 等苹果爹更新"></a>1. 等苹果爹更新</h3><p>如果苹果爹一直没注意到这个问题，或者没有人提，谁知道还要等多久？<br>关于此问题，我已经向苹果爹提交了bug，期待后续修复：</p>
+<p><a href="https://bugreport.apple.com/web/?problemID=35948702" target="_blank" rel="noopener">ProblemID=35948702</a></p>
+<h3 id="2-先降级Xcode"><a href="#2-先降级Xcode" class="headerlink" title="2. 先降级Xcode"></a>2. 先降级Xcode</h3><p>确切的说，这是目前最快捷的一个方式，保证没有问题。</p>
+<h3 id="3-改变图片资源存储"><a href="#3-改变图片资源存储" class="headerlink" title="3. 改变图片资源存储"></a>3. 改变图片资源存储</h3><p>图片不要放在asset里面，方法放在bundle里面就没问题。不知道是Xcode9.2bug还是没设置相关属性。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="http://www.cocoachina.com/bbs/read.php?tid=1729079" target="_blank" rel="noopener">Xcode9.2 运行iOS8.1图片异常</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/12/09/xocde9-2-and-iOS-8-1-image-unnormal/" data-id="cje538s0r002h3528cu80rpb6" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术坑/">技术坑</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-macos-high-sierra-with-cocoapods" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/12/06/macos-high-sierra-with-cocoapods/" class="article-date">
+  <time datetime="2017-12-06T03:42:36.000Z" itemprop="datePublished">2017-12-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/移动技术/">移动技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/06/macos-high-sierra-with-cocoapods/">升级 macOS High Sierra 后与 Cocoapods 的兼容问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当你发觉自己没有问题的时候，那就尝试着重启一下，万一问题解决了呢？</p>
+<p>最近实在厌烦苹果推送了 macOS High Sierra 更新，于是一下班前打开电脑更新系统。过程还算顺利，网络很快，大概 10左右就下载完毕，升级过程中卡死，随后就行下班回家，让其升级了一个夜晚</p>
+<p>不过在使用 Cocoapods 的时候还是遇到了问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">06-Dec-2017 09:28:38	/Users/tianyi/bamboo-agent-home/temp/IOS-PB-JOB1-382-ScriptBuildTask-1550561307052749322.sh: /usr/local/bin/pod: /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby: bad interpreter: No such file or directory</span><br><span class="line">06-Dec-2017 11:24:58	env: ruby_executable_hooks: No such file or directory</span><br><span class="line">06-Dec-2017 11:30:11	/Users/tianyi/bamboo-agent-home/temp/IOS-PB-JOB1-382-ScriptBuildTask-5355633338674781643.sh: line 7: pod: command not found</span><br><span class="line">06-Dec-2017 11:31:27	env: ruby_executable_hooks: No such file or directory</span><br></pre></td></tr></table></figure>
+<p>看起来是 Cocoapods 依赖的 Ruby 版本问题，Google 一下，发现已经有人在 Cocoapods 的 repo 下提了这个 <a href="https://github.com/CocoaPods/CocoaPods/issues/6778" target="_blank" rel="noopener">issue</a>，下面也有开发者给出了解决方案：重新安装 Cocoapods. </p>
+<p>Pod 命令需要用到 2.0 版本的 Ruby 解释器 <code>/System/Library/Frameworks/Ruby.framework/Versions/2.0</code>，而 <code>macOS High Sierra</code> 将系统的 Ruby 解释器升级到了 <code>2.3</code> <code>/System/Library/Frameworks/Ruby.framework/Versions/2.3</code>，因此执行 pod 命令的时候由于找不到 Ruby 解释器而报错。</p>
+<p>于是按照提示重装 Cocoapods：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gem install cocoapods</span><br></pre></td></tr></table></figure>
+<p>安装完成后继续执行 pod install，又报了同样的错误。我决定继续重装一次 Cocoapods，不过这次加上 –verbose 参数，看看安装过程中做了哪些操作。log 太长我就不贴了，不过注意到最后输出的 pod 命令位置似乎跟上面执行 which pod 输出有点不一样，它是 /usr/bin/pod，而 which pod 的输出是 /usr/local/bin/pod，再看一下我的 $PATH 路径：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ echo $PATH</span><br><span class="line">/Users/tianyi/.rvm/gems/ruby-2.4.1/bin:/Users/tianyi/.rvm/gems/ruby-2.4.1@global/bin:/Users/tianyi/.rvm/rubies/ruby-2.4.1/bin:/Users/tianyi/.rvm/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/bin:/Users/tianyi/.jenv/shims:/Users/tianyi/.jenv/bin:/opt/subversion/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Server.app/Contents/ServerRoot/usr/bin:/Applications/Server.app/Contents/ServerRoot/usr/sbin:/usr/local/go/bin:/Users/tianyi/bin:/Users/tianyi/goProject/bin:/usr/local/go/bin:/usr/local/Cellar/nginx/1.12.0/bin:/usr/local/mysql/bin</span><br></pre></td></tr></table></figure>
+<p>可以看到在我的 $PATH 环境变量里，/usr/local/bin 的优先级是高于 /usr/bin 的，因此当这两个地方都存在一个名叫 pod 的命令时，系统优先执行 /usr/local/bin/pod，于是错误就这么产生了。因此我直接删除 /usr/local/bin/pod 文件，再执行 pod install –verbose，这一次果然安装成功了。</p>
+<p>这个问题应该是由于 Cocoapods 改变了安装路径导致的，记得 macOS 启用 System Integrity Protection 之后 Cocoapods 的安装路径也修改过，这次应该也是类似的问题吧，由于 $PATH 这个环境变量的问题，导致老版本的 pod 命令优先被执行。</p>
+<p>事情至此还未结局</p>
+<p>本地执行pod 指令已经没问题了，但是我们通过Bamboo 集成，使用脚本打包，却一直重复前面的错误无法自拔。</p>
+<p>重启bamboo 服务，依然不能解决问题</p>
+<p>尝试着使用重启治百病的手段，电脑关机重启试试看！</p>
+<p>祈祷中…🙏</p>
+<p>2017年12月6日午时三刻更</p>
+<p>说了你可能不相信，重启电脑后，一切问题都好了~</p>
+<p>更新</p>
+<p>解决macOS Sierra下注册机无法运行的问题</p>
+<p>很多软件都不兼容了<br>「安全性与隐私」设置中「任何来源」选项消失<br>几乎所有注册机都用不了</p>
+<p>恢复任何来源选项<br>ps：如果系统升级前就已经选择了任何来源，升级后还会正常显示</p>
+<p>打开终端(Terminal.app)<br>执行<code>sudo spctl --master-disable</code></p>
+<p>“任何来源”恢复~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/12/06/macos-high-sierra-with-cocoapods/" data-id="cje538s07001j3528pkwwgltr" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/升级坑/">升级坑</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-beego-study-newproject" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/24/beego-study-newproject/" class="article-date">
+  <time datetime="2017-06-24T09:00:00.000Z" itemprop="datePublished">2017-06-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Beego-入门/">Beego 入门</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/24/beego-study-newproject/">Beego 入门指南（一）如何新建项目</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="如何新建项目"><a href="#如何新建项目" class="headerlink" title="如何新建项目"></a>如何新建项目</h1><p>你对beego一无所知？没关系，这篇文档会很好的详细介绍beego的各个方面，看这个文档之前首先确认你已经安装了beego，如果你没有安装的话，请看这篇<a href="https://github.com/astaxie/beego/blob/master/docs/zh/Install.md" target="_blank" rel="noopener">安装指南</a></p>
+<p>beego 是一个快速开发 Go 应用的 HTTP 框架，他可以用来快速开发 API、Web 及后端服务等各种应用，是一个 RESTful 的框架，主要设计灵感来源于 tornado、sinatra 和 flask 这三个框架，但是结合了 Go 本身的一些特性（interface、struct 嵌入等）而设计的一个框架。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/06/24/beego-study-newproject/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/06/24/beego-study-newproject/" data-id="cje538rzc00063528u03bpley" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Beego/">Beego</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gcd-sync-parallel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/02/gcd-sync-parallel/" class="article-date">
+  <time datetime="2017-05-02T00:00:00.000Z" itemprop="datePublished">2017-05-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/移动技术/">移动技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/02/gcd-sync-parallel/">GCD 同步异步以及串并行详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/gcd/wind-surfing-67627_1920.jpg" alt="浪起来"></p>
+<p>GCD是iOS开发多线程中经常使用的技术，先看一下GCD中的常见的术语<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/02/gcd-sync-parallel/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/05/02/gcd-sync-parallel/" data-id="cje538rzt000q352864u1orno" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCD/">GCD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gcd-sync-barriers-groups-semaphore" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/28/gcd-sync-barriers-groups-semaphore/" class="article-date">
+  <time datetime="2017-04-28T00:00:00.000Z" itemprop="datePublished">2017-04-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/移动技术/">移动技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/28/gcd-sync-barriers-groups-semaphore/">GCD 同步操作之 Resource Competition</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/gcd/surfer-2212948_1920.jpg" alt="更快更高更强"></p>
+<p>在学会简单的使用GCD处理多线程之后，我们来再深入了解下GCD对多线程的一些同步控制。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/28/gcd-sync-barriers-groups-semaphore/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/04/28/gcd-sync-barriers-groups-semaphore/" data-id="cje538rzw000v3528iy5qoy56" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GCD/">GCD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-say-hello-work" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/18/say-hello-work/" class="article-date">
+  <time datetime="2017-04-18T00:00:00.000Z" itemprop="datePublished">2017-04-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/18/say-hello-work/">离开象牙塔以后</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/nenshuocijun/architecture-768432_1920.jpg" alt="离开象牙塔以后"></p>
+<p>学校出来有很多区别，其中有一点是最无聊的。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/18/say-hello-work/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/04/18/say-hello-work/" data-id="cje538s0h001z3528r85x9lj4" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/心情随笔/">心情随笔</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-continuous-code-quality-sonarqube-install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/15/continuous-code-quality-sonarqube-install/" class="article-date">
+  <time datetime="2017-02-15T00:00:00.000Z" itemprop="datePublished">2017-02-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/持续集成/">持续集成</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/15/continuous-code-quality-sonarqube-install/">通过Sonar 初步构建代码持续审查</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/continuous-code-quality-sonarqube-install/Benefits-of-Using-SonarQube-For-Code-Reviews.jpg" alt="SonarQube"></p>
+<h2 id="介绍篇"><a href="#介绍篇" class="headerlink" title="介绍篇"></a>介绍篇</h2><h3 id="SonarQube-介绍"><a href="#SonarQube-介绍" class="headerlink" title="SonarQube 介绍"></a>SonarQube 介绍</h3><p><a href="https://www.sonarqube.org/" target="_blank" rel="noopener">SonarQube</a> 是一款领先的持续代码质量监控平台，开源在github 上，现在已更新到6.2 版本，star 数量超过 1400+，可以轻松配置在内网服务器，实时监控代码，帮助了解提升提升团队项目代码质量。通过插件机制，SonarQube可以继承不同的测试工具，代码分析工具，以及持续集成工具。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/02/15/continuous-code-quality-sonarqube-install/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/02/15/continuous-code-quality-sonarqube-install/" data-id="cje538rzl000g352841jaelra" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Quality/">Quality</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Sonar/">Sonar</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-see-words-as-face" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/22/see-words-as-face/" class="article-date">
+  <time datetime="2017-01-22T04:29:59.000Z" itemprop="datePublished">2017-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/见字如面/">见字如面</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/22/see-words-as-face/">见字如面的过去一年</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>见字如面，甚是想念。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/01/22/see-words-as-face/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2017/01/22/see-words-as-face/" data-id="cje538s0m00263528rws6okr1" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/见字如面/">见字如面</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">weiter &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Beego-入门/">Beego 入门</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS学习/">iOS学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大前端/">大前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/小诗/">小诗</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发工具/">开发工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术分享/">技术分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/持续集成/">持续集成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/散文/">散文</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动技术/">移动技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/自动化测试/">自动化测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/见字如面/">见字如面</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Beego/">Beego</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quality/">Quality</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonar/">Sonar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WDA/">WDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS学习/">iOS学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/升级坑/">升级坑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吐槽/">吐槽</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小诗/">小诗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情随笔/">心情随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/思考/">思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/扫一扫/">扫一扫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术分享/">技术分享</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术坑/">技术坑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/散文/">散文</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学上网/">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动技术/">移动技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/见字如面/">见字如面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Beego/" style="font-size: 10px;">Beego</a> <a href="/tags/GCD/" style="font-size: 12.5px;">GCD</a> <a href="/tags/Quality/" style="font-size: 10px;">Quality</a> <a href="/tags/Sonar/" style="font-size: 10px;">Sonar</a> <a href="/tags/WDA/" style="font-size: 10px;">WDA</a> <a href="/tags/electron/" style="font-size: 10px;">electron</a> <a href="/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/tags/iOS学习/" style="font-size: 20px;">iOS学习</a> <a href="/tags/升级坑/" style="font-size: 12.5px;">升级坑</a> <a href="/tags/吐槽/" style="font-size: 15px;">吐槽</a> <a href="/tags/小诗/" style="font-size: 10px;">小诗</a> <a href="/tags/心情随笔/" style="font-size: 10px;">心情随笔</a> <a href="/tags/思考/" style="font-size: 17.5px;">思考</a> <a href="/tags/扫一扫/" style="font-size: 10px;">扫一扫</a> <a href="/tags/技术分享/" style="font-size: 10px;">技术分享</a> <a href="/tags/技术坑/" style="font-size: 10px;">技术坑</a> <a href="/tags/散文/" style="font-size: 10px;">散文</a> <a href="/tags/科学上网/" style="font-size: 10px;">科学上网</a> <a href="/tags/移动技术/" style="font-size: 10px;">移动技术</a> <a href="/tags/见字如面/" style="font-size: 10px;">见字如面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/03/how-to-install-web-driver-agent-on-device/">iOS 真机调试如何安装 WebDriverAgent</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/16/BigFE/electron-abc/">electron 入门学习</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/09/xocde9-2-and-iOS-8-1-image-unnormal/">Xcode9.2 编译在iOS8.1 系统上图片显示异常</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/06/macos-high-sierra-with-cocoapods/">升级 macOS High Sierra 后与 Cocoapods 的兼容问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/beego-study-newproject/">Beego 入门指南（一）如何新建项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 煜寒了<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

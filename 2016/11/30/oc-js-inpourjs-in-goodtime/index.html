@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>ObjC&amp;JavaScript 交互，在恰当的时机注入对象 | 暮雨御寒</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="警告：文章中提到的 1- (void)webView:(id)unuse didCreateJavaScriptContext:(JSContext *)ctx forFrame:(id)frame; 方法涉及私有API，有网友反馈说审核会被拒绝，希望看到的朋友们慎用 移动端项目开发中，免不了出现 Native App （以下简称Native）和 H5 页面（以下简称H5）的交互，网络上有很多第三">
+<meta name="keywords" content="移动技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ObjC&amp;JavaScript 交互，在恰当的时机注入对象">
+<meta property="og:url" content="https://yuhanle.github.io/2016/11/30/oc-js-inpourjs-in-goodtime/index.html">
+<meta property="og:site_name" content="暮雨御寒">
+<meta property="og:description" content="警告：文章中提到的 1- (void)webView:(id)unuse didCreateJavaScriptContext:(JSContext *)ctx forFrame:(id)frame; 方法涉及私有API，有网友反馈说审核会被拒绝，希望看到的朋友们慎用 移动端项目开发中，免不了出现 Native App （以下简称Native）和 H5 页面（以下简称H5）的交互，网络上有很多第三">
+<meta property="og:image" content="http://7xqhcq.com1.z0.glb.clouddn.com/inpurejs-in-goodtime/16.jpg">
+<meta property="og:image" content="http://7xqhcq.com1.z0.glb.clouddn.com/inpurejs-in-goodtime/brokenrule.001.png">
+<meta property="og:image" content="http://7xqhcq.com1.z0.glb.clouddn.com/inpurejs-in-goodtime/webView_didCreateJavaScriptContext.png">
+<meta property="og:updated_time" content="2018-02-27T03:19:22.692Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ObjC&amp;JavaScript 交互，在恰当的时机注入对象">
+<meta name="twitter:description" content="警告：文章中提到的 1- (void)webView:(id)unuse didCreateJavaScriptContext:(JSContext *)ctx forFrame:(id)frame; 方法涉及私有API，有网友反馈说审核会被拒绝，希望看到的朋友们慎用 移动端项目开发中，免不了出现 Native App （以下简称Native）和 H5 页面（以下简称H5）的交互，网络上有很多第三">
+<meta name="twitter:image" content="http://7xqhcq.com1.z0.glb.clouddn.com/inpurejs-in-goodtime/16.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="暮雨御寒" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">暮雨御寒</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://yuhanle.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-oc-js-inpourjs-in-goodtime" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/30/oc-js-inpourjs-in-goodtime/" class="article-date">
+  <time datetime="2016-11-30T00:00:00.000Z" itemprop="datePublished">2016-11-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/移动技术/">移动技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ObjC&amp;JavaScript 交互，在恰当的时机注入对象
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>警告：文章中提到的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)webView:(id)unuse didCreateJavaScriptContext:(JSContext *)ctx forFrame:(id)frame;</span><br></pre></td></tr></table></figure>
+<p>方法涉及私有API，有网友反馈说审核会被拒绝，希望看到的朋友们慎用</p>
+<p>移动端项目开发中，免不了出现 Native App （以下简称Native）和 H5 页面（以下简称H5）的交互，网络上有很多第三方框架，比如<a href="https://github.com/marcuswestin/WebViewJavascriptBridge" target="_blank" rel="noopener">WebViewJavascriptBridge</a>，对于一些小的项目需求来说，其实不用那么麻烦，我们还是<a id="more"></a>先从基础着手。</p>
+<p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/inpurejs-in-goodtime/16.jpg" alt="图文无关"></p>
+<h2 id="先了解几个基础方法"><a href="#先了解几个基础方法" class="headerlink" title="先了解几个基础方法"></a>先了解几个基础方法</h2><ul>
+<li>网页即将加载（最先执行的代理方法），在每次load 页面的时候都会先走这个回调，可以在此做一些自己的操作，经常会在这儿拦截协议</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType &#123; </span><br><span class="line">    // do something...</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>网页已经加载完成（最后执行的代理方法），执行到这个地方，web 页面已经加载完成，相关代码也都执行完毕</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)webViewDidFinishLoad:(UIWebView *)webView &#123;</span><br><span class="line">    // 加载完成 隐藏HUD</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="根据不同的场景，找一个最合适的方法"><a href="#根据不同的场景，找一个最合适的方法" class="headerlink" title="根据不同的场景，找一个最合适的方法"></a>根据不同的场景，找一个最合适的方法</h2><h3 id="场景1"><a href="#场景1" class="headerlink" title="场景1"></a>场景1</h3><blockquote>
+<p>（H5 通信 Native，告知Native 要做的事儿）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H5 页面在某个标签点击后，要关闭当前加载网页的控制器VC</span><br></pre></td></tr></table></figure>
+<p>需求分析：</p>
+<blockquote>
+<p>这应该不是最简单的一个需求，最简单的是Native 通过url 给H5 页面传参数，告知H5 要做的事儿。</p>
+<p>这个需求中，H5 页面已经加载完毕，此时可以说H5 页面相关的Bug 和UI 缺陷都与Native 无关，我每次都是这么跟测试人员讲，类似问题直接assign 给他们。</p>
+</blockquote>
+<p>功能实现：</p>
+<blockquote>
+<p>对于这类比较简单的需求，最常用的做法就是，通过拦截协议的方法，在点击标签的时候，可以调用自定义协议的超链接，比如定义一个 <code>yuhanle://action/close</code>的链接，在页面即将load 的时候，判断url 的协议，如果协议是 <code>yuhanle</code>，就拦截掉这个请求，做自己的处理。</p>
+</blockquote>
+<p>图解：</p>
+<p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/inpurejs-in-goodtime/brokenrule.001.png" alt=""></p>
+<h3 id="场景2"><a href="#场景2" class="headerlink" title="场景2"></a>场景2</h3><blockquote>
+<p>（H5 调用 Native App 的JS 方法，包括同步和异步操作）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">H5 页面在加载过程中，需要从Native 中取得部分数据，或调用某个功能，均包含同步</span><br><span class="line">操作或异步操作，比如只是简单的获取token，则直接同步返回，如果需要Native 异</span><br><span class="line">步拿到结果，Native 则需要考虑 JSExport 中的线程问题</span><br></pre></td></tr></table></figure>
+<p>需求分析：</p>
+<blockquote>
+<p>这个需求中肯定需要Native 注入JS 方法，H5 通过调用JS 和Native 通信，其中包括同步和异步两种情况下的处理，需要注意的就是异步操作时，H5 需要在调用 App 时传入一个 JS 方法名，App 在拿到数据后可以回调 H5 的JS 方法，在调用这个回调的时候，需要使用webView 的currentThread，不然就会出现页面卡死。</p>
+</blockquote>
+<p>功能实现：</p>
+<blockquote>
+<p>1- 定义一个类，用于注入这个对象</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 此模型用于注入JS的模型，这样就可以通过模型来调用方法。</span><br><span class="line">@interface QWSJsObjCModel : NSObject &lt;JavaScriptObjectiveCDelegate&gt;</span><br><span class="line"></span><br><span class="line">@property (nonatomic, weak) JSContext *jsContext;</span><br><span class="line">@property (nonatomic, weak) UIWebView *webView;</span><br><span class="line">@property (nonatomic, weak) G100WebViewController * webVc;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2- 声明协议，实现和JS 对应的方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#import &lt;JavaScriptCore/JavaScriptCore.h&gt;</span><br><span class="line"></span><br><span class="line">@protocol JavaScriptObjectiveCDelegate &lt;JSExport&gt;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *  获取客户端的token</span><br><span class="line"> *</span><br><span class="line"> *  @param qwsKey 客户端生成的密码key</span><br><span class="line"> *</span><br><span class="line"> *  @return 返回值token</span><br><span class="line"> */</span><br><span class="line">- (NSString *)getToken:(NSString *)qwsKey;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *  H5 传递key 获取newToken 在调用其 callback 方法</span><br><span class="line"> *</span><br><span class="line"> *  @param key      qwskey</span><br><span class="line"> *  @param callback 回调方法名</span><br><span class="line"> *  @param property 方法参数</span><br><span class="line"> */</span><br><span class="line">- (void)getNewToken:(NSString *)key callback:(NSString *)callback property:(NSString *)property;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> *  H5 在加载完成后 告诉客户端在返回的时候调用该方法</span><br><span class="line"> *</span><br><span class="line"> *  @param callback js 方法名</span><br><span class="line"> */</span><br><span class="line">- (void)getExitMsgCallback:(NSString *)callback;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>3- 我们需要在打开webView 的时候，找到一个好的时机注入 JS</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// 首先拿到JSContext</span><br><span class="line">self.jsContext = [_jsWebView valueForKeyPath:@&quot;documentView.webView.mainFrame.javaScriptContext&quot;];</span><br><span class="line">   // 通过模型调用方法，这种方式更好些。</span><br><span class="line">   QWSJsObjCModel *model  = [[QWSJsObjCModel alloc] init];</span><br><span class="line">   self.jsContext[@&quot;nativeObj&quot;] = model;</span><br><span class="line">   model.jsContext = self.jsContext;</span><br><span class="line">   model.webView = _jsWebView;</span><br><span class="line">   </span><br><span class="line">   self.jsContext[@&quot;getUserinfo&quot;] = ^()&#123;</span><br><span class="line">       return @&quot;1234&quot;;</span><br><span class="line">   &#125;;</span><br><span class="line">   </span><br><span class="line">   self.jsContext.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) &#123;</span><br><span class="line">       context.exception = exceptionValue;</span><br><span class="line">       NSLog(@&quot;异常信息：%@&quot;, exceptionValue);</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>4- 对应H5 页面的JS 定义及调用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">	&lt;title&gt;测试IOS与JS之前的互调&lt;/title&gt;</span><br><span class="line">	&lt;style type=&quot;text/css&quot;&gt;</span><br><span class="line">	  * &#123;</span><br><span class="line">	  	font-size: 40px;</span><br><span class="line">	  &#125;</span><br><span class="line">	&lt;/style&gt;</span><br><span class="line">  &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line"></span><br><span class="line">  var jsFunc = function() &#123;</span><br><span class="line">    alert(&apos;Objective-C call js to show alert&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  var jsParamFunc = function(argument) &#123;</span><br><span class="line">    document.getElementById(&apos;jsParamFuncSpan&apos;).innerHTML</span><br><span class="line">    = argument[&apos;name&apos;];</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  &lt;/script&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">  </span><br><span class="line">&lt;div style=&quot;margin-top: 100px&quot;&gt;</span><br><span class="line">	&lt;h1&gt;Test how to use objective-c call js&lt;/h1&gt;</span><br><span class="line">	&lt;input type=&quot;button&quot; value=&quot;getToken&quot; onclick=&quot;alert(nativeObj.getToken())&quot;&gt;</span><br><span class="line">	&lt;input type=&quot;button&quot; value=&quot;Call ObjC system alert&quot; onclick=&quot;nativeObj.showAlertMsg(&apos;js title&apos;, &apos;js message&apos;)&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;input type=&quot;button&quot; value=&quot;Call ObjC func with JSON &quot; onclick=&quot;nativeObj.callWithDict(&#123;&apos;name&apos;: &apos;testname&apos;, &apos;age&apos;: 10, &apos;height&apos;: 170&#125;)&quot;&gt;</span><br><span class="line">	&lt;input type=&quot;button&quot; value=&quot;Call ObjC func with JSON and ObjC call js func to pass args.&quot; onclick=&quot;nativeObj.jsCallObjcAndObjcCallJsWithDict(&#123;&apos;name&apos;: &apos;testname&apos;, &apos;age&apos;: 10, &apos;height&apos;: 170&#125;)&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;a href=&quot;test1.html&quot;&gt;Click to next page&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">	&lt;span id=&quot;jsParamFuncSpan&quot; style=&quot;color: red; font-size: 50px;&quot;&gt;&lt;/span&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>按照以上的做法，就能达到Native 和H5 之间的相互通信，现在的问题是，在什么时候注入JS 对象，才能满足H5 页面的需求，因为实际情况中，H5 页面可能会随时调用你的JS。</p>
+<h3 id="需要注意的几个问题"><a href="#需要注意的几个问题" class="headerlink" title="需要注意的几个问题"></a>需要注意的几个问题</h3><p>1- 场景2 中我们提到的，异步调用时的线程问题 首先看下下面的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (void)getNewToken:(NSString *)key callback:(NSString *)callback property:(NSString *)property &#123;</span><br><span class="line">    if (_webVc) &#123;</span><br><span class="line">        if ([_webVc.qwsKey isEqualToString:key]) &#123;</span><br><span class="line">            </span><br><span class="line">            __block NSString * newToken = @&quot;&quot;;</span><br><span class="line">            __block NSInteger result = 0;</span><br><span class="line">            </span><br><span class="line">            [[UserManager shareManager] autoLoginWithComplete:^(NSInteger statusCode, ApiResponse *response, BOOL requestSuccess) &#123;</span><br><span class="line">                if (requestSuccess) &#123;</span><br><span class="line">                    newToken = [[G100InfoHelper shareInstance] token];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    newToken = @&quot;error&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                result = requestSuccess ? response.errCode : statusCode;</span><br><span class="line">                </span><br><span class="line">                JSValue * function = self.jsContext[callback];</span><br><span class="line">                NSArray * params = @[@(result), newToken, property];</span><br><span class="line">                [function callWithArguments:params];</span><br><span class="line">            &#125;];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码，就是想在H5 页面调用的时候，App 这边自动登陆，重新获取到最新的token，拿到结果以后并回调H5，整个过程上是异步的，看起来是没问题的，但是一旦实际操作起来，会在这里卡死。具体原因，我也不好解释，解决办法是有的，只能通过webView 的currentThread 来执行perform 操作。</p>
+<p>示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">- (void)getNewToken:(NSString *)key callback:(NSString *)callback property:(NSString *)property &#123;</span><br><span class="line">    if (_webVc) &#123;</span><br><span class="line">        if ([_webVc.qwsKey isEqualToString:key]) &#123;</span><br><span class="line">            </span><br><span class="line">            __block NSString * newToken = @&quot;&quot;;</span><br><span class="line">            __block NSInteger result = 0;</span><br><span class="line">            NSThread * webThread = [NSThread currentThread];</span><br><span class="line">            </span><br><span class="line">            [[UserManager shareManager] autoLoginWithComplete:^(NSInteger statusCode, ApiResponse *response, BOOL requestSuccess) &#123;</span><br><span class="line">                if (requestSuccess) &#123;</span><br><span class="line">                    newToken = [[G100InfoHelper shareInstance] token];</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    newToken = @&quot;error&quot;;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                result = requestSuccess ? response.errCode : statusCode;</span><br><span class="line">                // 这里通过此方法 在当前线程操作才不会造成卡死的现象</span><br><span class="line">                [self performSelector:@selector(callQWSJSWithArgument:) onThread:webThread withObject:@[callback, @(result), newToken, property] waitUntilDone:NO];</span><br><span class="line">            &#125;];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)callQWSJSWithArgument:(NSArray *)argument &#123;</span><br><span class="line">    NSString * callback = argument[0];</span><br><span class="line">    JSValue * function = self.jsContext[callback];</span><br><span class="line">    </span><br><span class="line">    NSMutableArray * params = [NSMutableArray arrayWithArray:argument];</span><br><span class="line">    // 移除第一个 方法名</span><br><span class="line">    [params removeObjectAtIndex:0];</span><br><span class="line">    [function callWithArguments:params];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2- 同样是场景2 中的一个问题，什么时候注入对象</p>
+<p>需求总是虚无缥缈的，对于H5 结合 Native 的开发结构中，Native 始终扮演着服务和入口的角色，H5 可能随时都会主动和Native 通信，但是Native 应该在什么时候准备好这些服务呢？</p>
+<p>看了很多网上的资料，几乎全部都是在页面加载完成 webViewDidFinishLoad 这个回调中注入方法，但实际开发中，很多页面在加载的时候就需要和Native 通信，比如说拿到token，如果在这个时候才注入，肯定是来不及的，只能无功而返。</p>
+<p>相信大多数人都没太在意这个问题，当然，如果强制让H5 的开发人员修改逻辑，将所有的通信都放在页面加载完成以后在做，也没问题，只不过对于用户的体验会变得糟糕。</p>
+<p>深入研究官方文档，就会发现，webView 在加载过程中，会执行这么一个方法，他的作用是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">_:didCreateJavaScriptContext:for:</span><br><span class="line"></span><br><span class="line">Notifies the delegate that a new JavaScript context has been created created.</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/inpurejs-in-goodtime/webView_didCreateJavaScriptContext.png" alt=""></p>
+<p>具体参见官方文档说明 <a href="https://developer.apple.com/reference/webkit/webframeloaddelegate/1501462-webview?language=objc" target="_blank" rel="noopener">didCreateJavaScriptContext</a></p>
+<p>看到这里，我们就能在收到这个消息的时候，拿到JSContext，然后注入我们的Model。</p>
+<p>首先，新建一个NSObject 的Catagory，在这个代理方法中发送一个通知</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@implementation NSObject (JSTest)</span><br><span class="line"></span><br><span class="line">- (void)webView:(id)unuse didCreateJavaScriptContext:(JSContext *)ctx forFrame:(id)frame &#123;</span><br><span class="line">    [[NSNotificationCenter defaultCenter] postNotificationName:@&quot;DidCreateContextNotification&quot; object:ctx];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>然后，在webView 的控制器中监听这个消息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">    [super viewDidLoad];</span><br><span class="line">    // 监听可以注入js 方法的通知</span><br><span class="line">    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didCreateJSContext:) name:@&quot;DidCreateContextNotification&quot; object:nil];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现@selector 方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - 可以注入js 的监听</span><br><span class="line">- (void)didCreateJSContext:(NSNotification *)notification &#123;</span><br><span class="line">    NSString *indentifier = [NSString stringWithFormat:@&quot;indentifier%lud&quot;, (unsigned long)self.webView.hash];</span><br><span class="line">    NSString *indentifierJS = [NSString stringWithFormat:@&quot;var %@ = &apos;%@&apos;&quot;, indentifier, indentifier];</span><br><span class="line">    [self.webView stringByEvaluatingJavaScriptFromString:indentifierJS];</span><br><span class="line">    </span><br><span class="line">    JSContext *context = notification.object;</span><br><span class="line">    </span><br><span class="line">    if (![context[indentifier].toString isEqualToString:indentifier]) return;</span><br><span class="line">    </span><br><span class="line">    self.jsContext = context;</span><br><span class="line">    // 通过模型调用方法，这种方式更好些。</span><br><span class="line">    QWSJsObjCModel *model  = [[QWSJsObjCModel alloc] init];</span><br><span class="line">    self.jsContext[@&quot;nativeObj&quot;] = model;</span><br><span class="line">    model.jsContext = self.jsContext;</span><br><span class="line">    model.webView   = self.webView;</span><br><span class="line">    model.webVc     = self;</span><br><span class="line">    </span><br><span class="line">    self.jsContext.exceptionHandler = ^(JSContext *context, JSValue *exceptionValue) &#123;</span><br><span class="line">        context.exception = exceptionValue;</span><br><span class="line">        DLog(@&quot;异常信息：%@&quot;, exceptionValue);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如此，应该是一次比较完美的注入了~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://yuhanle.github.io/2016/11/30/oc-js-inpourjs-in-goodtime/" data-id="cje538s0b001q3528mltykn2l" class="article-share-link">Teilen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/移动技术/">移动技术</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/04/design-scan-function/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          如何设计扫一扫功能才能更优雅
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/21/passing-silent-silent-memories/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">无言逝水回忆无声</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Beego-入门/">Beego 入门</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS学习/">iOS学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/大前端/">大前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/小诗/">小诗</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发工具/">开发工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术分享/">技术分享</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/持续集成/">持续集成</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/散文/">散文</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/移动技术/">移动技术</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/自动化测试/">自动化测试</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/见字如面/">见字如面</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Beego/">Beego</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GCD/">GCD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Quality/">Quality</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sonar/">Sonar</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WDA/">WDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/electron/">electron</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS学习/">iOS学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/升级坑/">升级坑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/吐槽/">吐槽</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小诗/">小诗</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/心情随笔/">心情随笔</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/思考/">思考</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/扫一扫/">扫一扫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术分享/">技术分享</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术坑/">技术坑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/散文/">散文</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/科学上网/">科学上网</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/移动技术/">移动技术</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/见字如面/">见字如面</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Beego/" style="font-size: 10px;">Beego</a> <a href="/tags/GCD/" style="font-size: 12.5px;">GCD</a> <a href="/tags/Quality/" style="font-size: 10px;">Quality</a> <a href="/tags/Sonar/" style="font-size: 10px;">Sonar</a> <a href="/tags/WDA/" style="font-size: 10px;">WDA</a> <a href="/tags/electron/" style="font-size: 10px;">electron</a> <a href="/tags/iOS/" style="font-size: 15px;">iOS</a> <a href="/tags/iOS学习/" style="font-size: 20px;">iOS学习</a> <a href="/tags/升级坑/" style="font-size: 12.5px;">升级坑</a> <a href="/tags/吐槽/" style="font-size: 15px;">吐槽</a> <a href="/tags/小诗/" style="font-size: 10px;">小诗</a> <a href="/tags/心情随笔/" style="font-size: 10px;">心情随笔</a> <a href="/tags/思考/" style="font-size: 17.5px;">思考</a> <a href="/tags/扫一扫/" style="font-size: 10px;">扫一扫</a> <a href="/tags/技术分享/" style="font-size: 10px;">技术分享</a> <a href="/tags/技术坑/" style="font-size: 10px;">技术坑</a> <a href="/tags/散文/" style="font-size: 10px;">散文</a> <a href="/tags/科学上网/" style="font-size: 10px;">科学上网</a> <a href="/tags/移动技术/" style="font-size: 10px;">移动技术</a> <a href="/tags/见字如面/" style="font-size: 10px;">见字如面</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/01/03/how-to-install-web-driver-agent-on-device/">iOS 真机调试如何安装 WebDriverAgent</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/16/BigFE/electron-abc/">electron 入门学习</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/09/xocde9-2-and-iOS-8-1-image-unnormal/">Xcode9.2 编译在iOS8.1 系统上图片显示异常</a>
+          </li>
+        
+          <li>
+            <a href="/2017/12/06/macos-high-sierra-with-cocoapods/">升级 macOS High Sierra 后与 Cocoapods 的兼容问题</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/24/beego-study-newproject/">Beego 入门指南（一）如何新建项目</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 煜寒了<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
