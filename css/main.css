@@ -2011,7 +2011,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #81f2ff;
+  background: #28b374;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2145,6 +2145,7 @@ pre .javascript .function {
   margin: 0 5px;
 }
 .powered-by,
+.footer-custom,
 .theme-info {
   display: inline-block;
 }
