@@ -389,8 +389,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2015/03/20/judging-device-type-info-is-comtinue-update/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/03/20/judging-device-type-info-is-comtinue-update/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2015/03/20/judging-device-type-info-is-comtinue-update/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -557,8 +556,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2014/05/21/xiaoshi-plum-flower-say/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/05/21/xiaoshi-plum-flower-say/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2014/05/21/xiaoshi-plum-flower-say/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -725,8 +723,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2014/05/20/reason-why-home-here/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2014/05/20/reason-why-home-here/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2014/05/20/reason-why-home-here/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1165,14 +1162,6 @@
 
   
 
-  
-    <script id="dsq-count-scr" src="https://meetus.disqus.com/count.js" async></script>
-  
-
-  
-
-
-
 
 
 	
@@ -1187,10 +1176,38 @@
 
 
 
+  
 
 
 
 
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: true,
+        appId: 'fd8MoWRIf0dWwKf4SljwWpiy-gzGzoHsz',
+        appKey: 'kwq6VYz9iEvxkfeWTenc71H0',
+        placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
