@@ -388,7 +388,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2018/03/06/deploy-the-vue-cli-project-on-github-pages/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/06/deploy-the-vue-cli-project-on-github-pages/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/06/deploy-the-vue-cli-project-on-github-pages/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -563,7 +564,14 @@
 
   
     <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
     </div>
+
   
 
 
@@ -616,7 +624,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -940,6 +948,31 @@
 
   
 
+  
+    <script id="dsq-count-scr" src="https://meetus.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://yuhanle.github.io/2018/03/06/deploy-the-vue-cli-project-on-github-pages/';
+        this.page.identifier = '2018/03/06/deploy-the-vue-cli-project-on-github-pages/';
+        this.page.title = '如何在 GitHub Pages 上部署 vue-cli 项目';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://meetus.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
 
 
 	
@@ -954,38 +987,10 @@
 
 
 
-  
 
 
 
 
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-  
-  
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: true,
-        notify: true,
-        appId: 'ao0Ht5Gu59KPVy479d2qKI8l-gzGzoHsz',
-        appKey: 'TAzMVHD212Gfjtqc6lKSsJw1',
-        placeholder: '还没有评论哦，快来抢沙发吧~',
-        avatar:'monsterid',
-        guest_info:guest,
-        pageSize:'10' || 10,
-    });
-  </script>
 
 
 
