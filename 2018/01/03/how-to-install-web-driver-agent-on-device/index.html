@@ -6,23 +6,22 @@
   
   <title>iOS 真机调试如何安装 WebDriverAgent | 印象煜寒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1gi">
+  <meta name="description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1git">
 <meta name="keywords" content="WDA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 真机调试如何安装 WebDriverAgent">
 <meta property="og:url" content="https://blog.yuhanle.com/2018/01/03/how-to-install-web-driver-agent-on-device/index.html">
 <meta property="og:site_name" content="印象煜寒">
-<meta property="og:description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1gi">
+<meta property="og:description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1git">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WechatIMG19.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/wda.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WX20180103-141257.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WX20180103-143535.png">
-<meta property="og:updated_time" content="2018-02-27T03:19:22.688Z">
+<meta property="og:updated_time" content="2018-06-26T10:40:50.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 真机调试如何安装 WebDriverAgent">
-<meta name="twitter:description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1gi">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WechatIMG19.png">
+<meta name="twitter:description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1git">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/wda.png">
 <meta name="twitter:creator" content="@yuhanle">
   
     <link rel="alternative" href="/atom.xml" title="印象煜寒" type="application/atom+xml">
@@ -118,8 +117,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WechatIMG19.png" alt=""></p>
-<p>近期，微信<a href="https://github.com/wangshub/wechat_jump_game" target="_blank" rel="noopener">跳一跳外挂</a>火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。</p>
+        <p>近期，微信<a href="https://github.com/wangshub/wechat_jump_game" target="_blank" rel="noopener">跳一跳外挂</a>火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。</p>
 <p><img src="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/wda.png" alt="WDA 工作原理"> </p>
 <p>其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 <a href="https://testerhome.com/topics/7220" target="_blank" rel="noopener">WebDriverAgent · TesterHome</a>，下面就按照这篇教程，各个击破真机调试WDA 的问题：</p>
 <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地</p>
@@ -178,7 +176,7 @@ var _hmt = _hmt || [];
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://blog.yuhanle.com/2018/01/03/how-to-install-web-driver-agent-on-device/" data-id="cjivjy6w8001tkp281avdqk7u" class="article-share-link" data-share="baidu" data-title="iOS 真机调试如何安装 WebDriverAgent">分享到</a>
+        <a data-url="https://blog.yuhanle.com/2018/01/03/how-to-install-web-driver-agent-on-device/" data-id="cjivk9k3z001jns286io9vnfo" class="article-share-link" data-share="baidu" data-title="iOS 真机调试如何安装 WebDriverAgent">分享到</a>
       
 
       

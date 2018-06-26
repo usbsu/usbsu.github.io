@@ -6,15 +6,14 @@
   
   <title>记录一次简单的逆向 | 印象煜寒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="由于爱奇艺会员到期，于是产生逆向APP 的想法，尚未找到解决办法。 安装MonkeyDev原有iOSOpenDev的升级，非越狱插件开发集成神器！  可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进。 只需拖入一个砸壳应用，自动集成class-dump、res">
+  <meta name="description" content="由于爱奇艺会员到期，于是产生逆向APP 的想法，尚未找到解决办法。 安装MonkeyDev原有iOSOpenDev的升级，非越狱插件开发集成神器！  可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进。 只需拖入一个砸壳应用，自动集成class-dump、rest">
 <meta name="keywords" content="逆向">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录一次简单的逆向">
 <meta property="og:url" content="https://blog.yuhanle.com/2018/04/24/a-simple-iosre/index.html">
 <meta property="og:site_name" content="印象煜寒">
-<meta property="og:description" content="由于爱奇艺会员到期，于是产生逆向APP 的想法，尚未找到解决办法。 安装MonkeyDev原有iOSOpenDev的升级，非越狱插件开发集成神器！  可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进。 只需拖入一个砸壳应用，自动集成class-dump、res">
+<meta property="og:description" content="由于爱奇艺会员到期，于是产生逆向APP 的想法，尚未找到解决办法。 安装MonkeyDev原有iOSOpenDev的升级，非越狱插件开发集成神器！  可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进。 只需拖入一个砸壳应用，自动集成class-dump、rest">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://user-images.githubusercontent.com/10498756/39162859-2ed8aa54-47aa-11e8-9afb-1f1b989819f4.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/10498756/39162346-a7f6fcb8-47a7-11e8-92d1-8a0e0f910036.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/10498756/39162331-94ee0fee-47a7-11e8-8a97-aec72ffba1b7.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/10498756/39162363-c0e9febe-47a7-11e8-8569-21ddef9f1f9c.png">
@@ -27,11 +26,11 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/10498756/39162490-531e8548-47a8-11e8-91aa-e3f0d9a3034f.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/10498756/39162508-7baa0f0a-47a8-11e8-92a6-1c71f6e0b48a.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/10498756/39162834-08506cf0-47aa-11e8-9712-0c86beddf7b3.png">
-<meta property="og:updated_time" content="2018-04-24T02:29:57.206Z">
+<meta property="og:updated_time" content="2018-06-26T10:41:14.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次简单的逆向">
-<meta name="twitter:description" content="由于爱奇艺会员到期，于是产生逆向APP 的想法，尚未找到解决办法。 安装MonkeyDev原有iOSOpenDev的升级，非越狱插件开发集成神器！  可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进。 只需拖入一个砸壳应用，自动集成class-dump、res">
-<meta name="twitter:image" content="https://user-images.githubusercontent.com/10498756/39162859-2ed8aa54-47aa-11e8-9afb-1f1b989819f4.png">
+<meta name="twitter:description" content="由于爱奇艺会员到期，于是产生逆向APP 的想法，尚未找到解决办法。 安装MonkeyDev原有iOSOpenDev的升级，非越狱插件开发集成神器！  可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进。 只需拖入一个砸壳应用，自动集成class-dump、rest">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/10498756/39162346-a7f6fcb8-47a7-11e8-92d1-8a0e0f910036.png">
 <meta name="twitter:creator" content="@yuhanle">
   
     <link rel="alternative" href="/atom.xml" title="印象煜寒" type="application/atom+xml">
@@ -127,8 +126,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://user-images.githubusercontent.com/10498756/39162859-2ed8aa54-47aa-11e8-9afb-1f1b989819f4.png" alt="image"></p>
-<p>由于爱奇艺会员到期，于是产生逆向APP 的想法，尚未找到解决办法。</p>
+        <p>由于爱奇艺会员到期，于是产生逆向APP 的想法，尚未找到解决办法。</p>
 <h2 id="安装MonkeyDev"><a href="#安装MonkeyDev" class="headerlink" title="安装MonkeyDev"></a>安装MonkeyDev</h2><p>原有iOSOpenDev的升级，非越狱插件开发集成神器！</p>
 <ul>
 <li>可以使用Xcode开发CaptainHook Tweak、Logos Tweak 和 Command-line Tool，在越狱机器开发插件，这是原来iOSOpenDev功能的迁移和改进。</li>
@@ -208,7 +206,7 @@ var _hmt = _hmt || [];
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://blog.yuhanle.com/2018/04/24/a-simple-iosre/" data-id="cjivjy6vi000ekp285onv6m84" class="article-share-link" data-share="baidu" data-title="记录一次简单的逆向">分享到</a>
+        <a data-url="https://blog.yuhanle.com/2018/04/24/a-simple-iosre/" data-id="cjivk9k2x0002ns28zvga2n31" class="article-share-link" data-share="baidu" data-title="记录一次简单的逆向">分享到</a>
       
 
       
