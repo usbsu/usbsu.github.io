@@ -10,7 +10,7 @@
 <meta name="keywords" content="iOS学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS-BLE蓝牙开发持续更新">
-<meta property="og:url" content="https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/index.html">
+<meta property="og:url" content="https://blog.yuhanle.com/2015/06/24/ble-development-continuously-update/index.html">
 <meta property="og:site_name" content="印象煜寒">
 <meta property="og:description" content="在写这个博客之前，空余时间抽看了近一个月的文档和Demo，系统给的解释很详细，接口也比较实用，唯独有一点，对于设备的唯一标示，网上众说纷纭，在这里我目前也还没有自己的见解，只是在不断的测试各种情况，亲测同一设备的UUID对于每台iPhone设备都不一样，只能尽量保证设备的唯一性，特别是自动重连的过程，让用户没有感知。">
 <meta property="og:locale" content="zh-CN">
@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
           <input name=tn type=hidden value="bds">
           <input name=cl type=hidden value="3">
           <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="yuhanle.github.io">
+          <input type="hidden" name="si" value="blog.yuhanle.com">
         </form>
       </div>
     </div>
@@ -117,7 +117,7 @@ var _hmt = _hmt || [];
       
         <p>在写这个博客之前，空余时间抽看了近一个月的文档和Demo，系统给的解释很详细，接口也比较实用，唯独有一点，对于设备的唯一标示，网上众说纷纭，在这里我目前也还没有自己的见解，只是在不断的测试各种情况，亲测同一设备的UUID对于每台iPhone设备都不一样，只能尽量保证设备的唯一性，特别是自动重连的过程，让用户没有感知。<a id="more"></a>我之前也找了很久，发现CBCentralManager和CBPeripheral里边都找不到和Mac地址有关的东西，后来发现一般是外设在Device Information服务中的某个特征返回的。经过与硬件工程师的协商，决定APP端将从这个服务中获取到蓝牙设备以及我的iPhone手机的蓝牙Mac地址，为自动连接的唯一性做准备。</p>
 <p>这里经过和硬件工程师的测试，发现设备端在获取手机蓝牙MAC地址的时候，当用户手机重启之后，这个地址也是会随机变化的，也就是说，作为开发者，只有设备的MAC地址能够保持唯一性不变化。</p>
-<p>如有疑问的朋友可以先去这里瞅一瞅：<a href="https://yuhanle.github.io/2016/01/10/about-ble-intelligent-hd-demo-detailed/">一个关于蓝牙4.0的智能硬件Demo详解</a></p>
+<p>如有疑问的朋友可以先去这里瞅一瞅：<a href="https://yuhanle.github.io/2016/01/10/about-ble-intelligent-hd-demo-detailed/" target="_blank" rel="noopener">一个关于蓝牙4.0的智能硬件Demo详解</a></p>
 <ul>
 <li>下面是两台iPhone6连接同一台蓝牙设备的结果：</li>
 </ul>
@@ -195,11 +195,11 @@ var _hmt = _hmt || [];
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/" data-id="cjivivcqa000kbe2899qzz5ri" class="article-share-link" data-share="baidu" data-title="iOS-BLE蓝牙开发持续更新">分享到</a>
+        <a data-url="https://blog.yuhanle.com/2015/06/24/ble-development-continuously-update/" data-id="cjivjy6vm000kkp28568v25wi" class="article-share-link" data-share="baidu" data-title="iOS-BLE蓝牙开发持续更新">分享到</a>
       
 
       
-        <a href="https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/#disqus_thread" class="article-comment-link">评论</a>
+        <a href="https://blog.yuhanle.com/2015/06/24/ble-development-continuously-update/#disqus_thread" class="article-comment-link">评论</a>
       
 
       
@@ -334,7 +334,7 @@ var _hmt = _hmt || [];
 <script>
   var disqus_shortname = 'meetus';
   
-  var disqus_url = 'https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/';
+  var disqus_url = 'https://blog.yuhanle.com/2015/06/24/ble-development-continuously-update/';
   
   (function(){
     var dsq = document.createElement('script');

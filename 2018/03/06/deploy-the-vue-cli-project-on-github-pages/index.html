@@ -10,7 +10,7 @@
 <meta name="keywords" content="vue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何在 GitHub Pages 上部署 vue-cli 项目">
-<meta property="og:url" content="https://yuhanle.github.io/2018/03/06/deploy-the-vue-cli-project-on-github-pages/index.html">
+<meta property="og:url" content="https://blog.yuhanle.com/2018/03/06/deploy-the-vue-cli-project-on-github-pages/index.html">
 <meta property="og:site_name" content="印象煜寒">
 <meta property="og:description" content="1. 在 GitHub 上创建与本地项目同名的远程仓库1直接在GitHub 上新建一个远程仓库 2. 将本地项目 push 到远程12345$ git init$ git add .$ git cmt -m &amp;apos;create project&amp;apos;$ git remote add origin git@github.com:yuhanle/resume.git$ git push -u">
 <meta property="og:locale" content="zh-CN">
@@ -80,7 +80,7 @@ var _hmt = _hmt || [];
           <input name=tn type=hidden value="bds">
           <input name=cl type=hidden value="3">
           <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="yuhanle.github.io">
+          <input type="hidden" name="si" value="blog.yuhanle.com">
         </form>
       </div>
     </div>
@@ -116,7 +116,7 @@ var _hmt = _hmt || [];
         <h3 id="1-在-GitHub-上创建与本地项目同名的远程仓库"><a href="#1-在-GitHub-上创建与本地项目同名的远程仓库" class="headerlink" title="1. 在 GitHub 上创建与本地项目同名的远程仓库"></a>1. 在 GitHub 上创建与本地项目同名的远程仓库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">直接在GitHub 上新建一个远程仓库</span><br></pre></td></tr></table></figure>
 <h3 id="2-将本地项目-push-到远程"><a href="#2-将本地项目-push-到远程" class="headerlink" title="2. 将本地项目 push 到远程"></a>2. 将本地项目 push 到远程</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">$ git add .</span><br><span class="line">$ git cmt -m &apos;create project&apos;</span><br><span class="line">$ git remote add origin git@github.com:yuhanle/resume.git</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure>
 <h3 id="3-将-dist-下的所有文件夹-push-到-gh-pages"><a href="#3-将-dist-下的所有文件夹-push-到-gh-pages" class="headerlink" title="3. 将 dist 下的所有文件夹 push 到 gh-pages"></a>3. 将 dist 下的所有文件夹 push 到 gh-pages</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm run build</span><br><span class="line">$ git checkout -b gh-pages</span><br><span class="line">$ git add -f dist</span><br><span class="line">$ git commit -m &apos;create project&apos;</span><br><span class="line">$ git subtree push --prefix dist origin gh-pages</span><br></pre></td></tr></table></figure>
-<p>这些步骤做完之后在 gh-pages 分支展示项目了，比如<br><a href="https://yuhanle.github.io/resume/">https://yuhanle.github.io/resume/</a></p>
+<p>这些步骤做完之后在 gh-pages 分支展示项目了，比如<br><a href="https://yuhanle.github.io/resume/" target="_blank" rel="noopener">https://yuhanle.github.io/resume/</a></p>
 <h3 id="4-资源路径错误问题"><a href="#4-资源路径错误问题" class="headerlink" title="4. 资源路径错误问题"></a>4. 资源路径错误问题</h3><ol>
 <li>在 <code>npm run build</code> 之前要将 <code>config/index.js</code> 里边 <code>build</code> 配置里边的 <code>assetsPublicPath: &#39;/&#39;</code> 改成 <code>assetsPublicPath: &#39;./&#39;</code></li>
 <li>将 <code>webpack.prod.conf.js</code> 中的 <code>removeAttributeQuotes</code> 改为 <code>false</code></li>
@@ -126,11 +126,11 @@ var _hmt = _hmt || [];
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://yuhanle.github.io/2018/03/06/deploy-the-vue-cli-project-on-github-pages/" data-id="cjivivcqj000ybe2856hrr2al" class="article-share-link" data-share="baidu" data-title="如何在 GitHub Pages 上部署 vue-cli 项目">分享到</a>
+        <a data-url="https://blog.yuhanle.com/2018/03/06/deploy-the-vue-cli-project-on-github-pages/" data-id="cjivjy6vp000qkp28yqdeqiqu" class="article-share-link" data-share="baidu" data-title="如何在 GitHub Pages 上部署 vue-cli 项目">分享到</a>
       
 
       
-        <a href="https://yuhanle.github.io/2018/03/06/deploy-the-vue-cli-project-on-github-pages/#disqus_thread" class="article-comment-link">评论</a>
+        <a href="https://blog.yuhanle.com/2018/03/06/deploy-the-vue-cli-project-on-github-pages/#disqus_thread" class="article-comment-link">评论</a>
       
 
       
@@ -265,7 +265,7 @@ var _hmt = _hmt || [];
 <script>
   var disqus_shortname = 'meetus';
   
-  var disqus_url = 'https://yuhanle.github.io/2018/03/06/deploy-the-vue-cli-project-on-github-pages/';
+  var disqus_url = 'https://blog.yuhanle.com/2018/03/06/deploy-the-vue-cli-project-on-github-pages/';
   
   (function(){
     var dsq = document.createElement('script');

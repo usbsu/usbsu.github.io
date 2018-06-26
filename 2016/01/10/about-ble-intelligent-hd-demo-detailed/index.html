@@ -10,7 +10,7 @@
 <meta name="keywords" content="iOS学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个关于蓝牙4.0的智能硬件Demo详解">
-<meta property="og:url" content="https://yuhanle.github.io/2016/01/10/about-ble-intelligent-hd-demo-detailed/index.html">
+<meta property="og:url" content="https://blog.yuhanle.com/2016/01/10/about-ble-intelligent-hd-demo-detailed/index.html">
 <meta property="og:site_name" content="印象煜寒">
 <meta property="og:description" content="写这篇详解是因为最近很多人都在问相关问题，但是上篇文章iOS-BLE蓝牙开发持续更新已经过去半年，很多东西已经开始遗忘，今天重新拾起，并在Demo中新添了具体功能和详细注释，顺便屡一下当初设计的思路，我想用图片来解释会更好理解。">
 <meta property="og:locale" content="zh-CN">
@@ -83,7 +83,7 @@ var _hmt = _hmt || [];
           <input name=tn type=hidden value="bds">
           <input name=cl type=hidden value="3">
           <input name=ct type=hidden value="2097152">
-          <input type="hidden" name="si" value="yuhanle.github.io">
+          <input type="hidden" name="si" value="blog.yuhanle.com">
         </form>
       </div>
     </div>
@@ -116,7 +116,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>写这篇详解是因为最近很多人都在问相关问题，但是上篇文章<a href="https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/">iOS-BLE蓝牙开发持续更新</a>已经过去半年，很多东西已经开始遗忘，今天重新拾起，并在Demo中新添了具体功能和详细注释，顺便屡一下当初设计的思路，我想用图片来解释会更好理解。<a id="more"></a></p>
+        <p>写这篇详解是因为最近很多人都在问相关问题，但是上篇文章<a href="https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/" target="_blank" rel="noopener">iOS-BLE蓝牙开发持续更新</a>已经过去半年，很多东西已经开始遗忘，今天重新拾起，并在Demo中新添了具体功能和详细注释，顺便屡一下当初设计的思路，我想用图片来解释会更好理解。<a id="more"></a></p>
 <p>首先看一下几个文件的大概功能，后面在用图来分析其中的设计理念。</p>
 <h4 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h4><p>整个文件主要包含四大块，每一块的功能都是独立开的，不过当中却又设计不足的地方，希望各位能够积极fork，贡献代码！</p>
 <ul>
@@ -148,7 +148,7 @@ var _hmt = _hmt || [];
 <p>每一个viewController维护一个helper，通过NSNotificationCenter广播所有操作的结果，并告知每一个关心这个设备的viewController。</p>
 <p>简言之，就是监护人接不接受这个通知，或者老师发不发送这个消息给监护人。有一点需要明白的是，不管监护人想不想收到这个设备的消息，这个设备都是会广播自己的信息的，只是helper会判断这个孩子是不是你的~</p>
 <p>以上就是这个Demo的设计思路，当然Demo中仍有很多不足，之所以不敢称之为kit，是因为它确实没有达到kit的封装能力与效果，毕竟这只是一个Demo，他只是简单体现了一个设计思路，并不能达到通用的效果，因为在智能硬件这一块，每个产品的协议，属性都会有所差异，不可能做到通用的效果。希望和大家有更深入的交流与学习！</p>
-<p>最后回顾一下上篇文章的地址：<a href="https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/">iOS-BLE蓝牙开发持续更新</a></p>
+<p>最后回顾一下上篇文章的地址：<a href="https://yuhanle.github.io/2015/06/24/ble-development-continuously-update/" target="_blank" rel="noopener">iOS-BLE蓝牙开发持续更新</a></p>
 <p>以及这个说了很久的Demo地址：<a href="https://github.com/yuhanle/WEBlueToothManager" target="_blank" rel="noopener">一个iOS BLE蓝牙学习的Demo</a></p>
 <p>在这里也顺便介绍一下近期看到的一篇关于BLE开发的kit(<a href="http://macpu.github.io/2015/11/04/MPBluetoothKit-iOS%E8%93%9D%E7%89%99%E6%A1%86%E6%9E%B6/" target="_blank" rel="noopener">MPBluetoothKit iOS蓝牙框架</a>)，作者很详细的将系统的CoreBluetooth的代理都用block实现了，看起来更加清晰与实用，也希望各位能够多多关注，共同学习。</p>
 <p>本站文章如无其他特殊说明，均为原创，转载请注明出处。</p>
@@ -157,11 +157,11 @@ var _hmt = _hmt || [];
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://yuhanle.github.io/2016/01/10/about-ble-intelligent-hd-demo-detailed/" data-id="cjivivcpx0005be28r8s3adpj" class="article-share-link" data-share="baidu" data-title="一个关于蓝牙4.0的智能硬件Demo详解">分享到</a>
+        <a data-url="https://blog.yuhanle.com/2016/01/10/about-ble-intelligent-hd-demo-detailed/" data-id="cjivjy6v40003kp28x277tx83" class="article-share-link" data-share="baidu" data-title="一个关于蓝牙4.0的智能硬件Demo详解">分享到</a>
       
 
       
-        <a href="https://yuhanle.github.io/2016/01/10/about-ble-intelligent-hd-demo-detailed/#disqus_thread" class="article-comment-link">评论</a>
+        <a href="https://blog.yuhanle.com/2016/01/10/about-ble-intelligent-hd-demo-detailed/#disqus_thread" class="article-comment-link">评论</a>
       
 
       
@@ -296,7 +296,7 @@ var _hmt = _hmt || [];
 <script>
   var disqus_shortname = 'meetus';
   
-  var disqus_url = 'https://yuhanle.github.io/2016/01/10/about-ble-intelligent-hd-demo-detailed/';
+  var disqus_url = 'https://blog.yuhanle.com/2016/01/10/about-ble-intelligent-hd-demo-detailed/';
   
   (function(){
     var dsq = document.createElement('script');
