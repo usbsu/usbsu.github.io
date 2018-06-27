@@ -6,21 +6,21 @@
   
   <title>iOS 真机调试如何安装 WebDriverAgent | 印象煜寒</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1git">
+  <meta name="description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地">
 <meta name="keywords" content="WDA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 真机调试如何安装 WebDriverAgent">
 <meta property="og:url" content="https://blog.yuhanle.com/2018/01/03/how-to-install-web-driver-agent-on-device/index.html">
 <meta property="og:site_name" content="印象煜寒">
-<meta property="og:description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1git">
+<meta property="og:description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/wda.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WX20180103-141257.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/WX20180103-143535.png">
-<meta property="og:updated_time" content="2018-06-26T10:40:50.309Z">
+<meta property="og:updated_time" content="2018-06-27T08:05:24.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 真机调试如何安装 WebDriverAgent">
-<meta name="twitter:description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地 1git">
+<meta name="twitter:description" content="近期，微信跳一跳外挂火了，看了作者的思路和教程，感觉挺简单，不过在实现（照葫芦画瓢）的过程中，遭遇到不少问题。   其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 WebDriverAgent · TesterHome，下面就按照这篇教程，各个击破真机调试WDA 的问题： 开始首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/wda.png">
 <meta name="twitter:creator" content="@yuhanle">
   
@@ -64,11 +64,11 @@ var _hmt = _hmt || [];
       <nav id="main-nav">
         <a id="main-nav-toggle" class="nav-icon"></a>
         
-          <a class="main-nav-link" href="/">Home</a>
+          <a class="main-nav-link" href="/">主页</a>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+          <a class="main-nav-link" href="/archives">归档</a>
         
-          <a class="main-nav-link" href="/about">About</a>
+          <a class="main-nav-link" href="/about">关于</a>
         
       </nav>
       <nav id="sub-nav">
@@ -121,6 +121,7 @@ var _hmt = _hmt || [];
 <p><img src="https://raw.githubusercontent.com/yuhanle/blogbag/master/uploads/images/wda.png" alt="WDA 工作原理"> </p>
 <p>其中之一便是，真机调试 WDA，参考 iOS 真机如何安装 <a href="https://testerhome.com/topics/7220" target="_blank" rel="noopener">WebDriverAgent · TesterHome</a>，下面就按照这篇教程，各个击破真机调试WDA 的问题：</p>
 <h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>首先按照教程，尽量更新下Xcode 的版本，从github 上下载WDA 的最新版本，直接克隆到本地</p>
+<a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/facebook/WebDriverAgent.git</span><br></pre></td></tr></table></figure>
 <p>切换到WDA 根目录，运行初始化脚本</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd WebDriverAgent</span><br><span class="line">./Scripts/bootstrap.sh</span><br></pre></td></tr></table></figure>
@@ -176,7 +177,7 @@ var _hmt = _hmt || [];
     </div>
     <footer class="article-footer">
       
-        <a data-url="https://blog.yuhanle.com/2018/01/03/how-to-install-web-driver-agent-on-device/" data-id="cjivk9k3z001jns286io9vnfo" class="article-share-link" data-share="baidu" data-title="iOS 真机调试如何安装 WebDriverAgent">分享到</a>
+        <a data-url="https://blog.yuhanle.com/2018/01/03/how-to-install-web-driver-agent-on-device/" data-id="cjiwuva2i001q0l286mbmue70" class="article-share-link" data-share="baidu" data-title="iOS 真机调试如何安装 WebDriverAgent">分享到</a>
       
 
       
@@ -288,21 +289,21 @@ var _hmt = _hmt || [];
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2018 煜寒了<br>
+      &copy; 2014 - 2018 煜寒了<br>
       Powered by <a href="//hexo.io/" target="_blank">Hexo</a>
       .
-      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape</a>
     </div>
   </div>
 </footer>
   </div>
   <nav id="mobile-nav">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+    <a href="/" class="mobile-nav-link">主页</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a href="/archives" class="mobile-nav-link">归档</a>
   
-    <a href="/about" class="mobile-nav-link">About</a>
+    <a href="/about" class="mobile-nav-link">关于</a>
   
 </nav>
   <!-- totop start -->
