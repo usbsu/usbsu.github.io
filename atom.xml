@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.yuhanle.com/"/>
-  <updated>2018-07-07T01:36:08.081Z</updated>
+  <updated>2018-07-17T01:22:21.725Z</updated>
   <id>https://blog.yuhanle.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>梦想虽晚，“码”不停蹄</title>
+    <link href="https://blog.yuhanle.com/2018/07/16/dream-late-code-nostop/"/>
+    <id>https://blog.yuhanle.com/2018/07/16/dream-late-code-nostop/</id>
+    <published>2018-07-16T05:59:43.000Z</published>
+    <updated>2018-07-17T01:22:21.725Z</updated>
+    
+    <content type="html"><![CDATA[<p>以梦为马，不负韶华。</p><p>我羡慕他们的故事，佩服他们的成就，相信很多人会跟我一样为他们的成功喝彩，毕竟这都是些励志的典型，而我在默默呐喊的同时，还有种淡淡的甜蜜，小小的幸福感，因为我也选择了这条路，我会这条路上走很远，这是属于我们的故事，有他，有她，不知道有天会不会有我。</p><p>梦想很遥远，可我们愿马不停蹄的前行，为了梦想而奋斗总是痛苦的，又总是快乐的，我知道，可我来了，这种感觉很幸福。</p><center><br>传送门：<a href="https://latehorse.github.io/" target="_blank" rel="noopener">晚码工作室</a><br></center>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;以梦为马，不负韶华。&lt;/p&gt;
+&lt;p&gt;我羡慕他们的故事，佩服他们的成就，相信很多人会跟我一样为他们的成功喝彩，毕竟这都是些励志的典型，而我在默默呐喊的同时，还有种淡淡的甜蜜，小小的幸福感，因为我也选择了这条路，我会这条路上走很远，这是属于我们的故事，有他，有她，不知道有天会不
+      
+    
+    </summary>
+    
+      <category term="晚码" scheme="https://blog.yuhanle.com/categories/%E6%99%9A%E7%A0%81/"/>
+    
+    
+      <category term="晚码" scheme="https://blog.yuhanle.com/tags/%E6%99%9A%E7%A0%81/"/>
+    
+  </entry>
   
   <entry>
     <title>数据序列化框架在 Swift 日常开发中的应用</title>
@@ -485,31 +511,6 @@
     
     
       <category term="see a word" scheme="https://blog.yuhanle.com/tags/see-a-word/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>升级到Xcode8.3之后PackageApplication的问题</title>
-    <link href="https://blog.yuhanle.com/2016/12/06/xcrun-error/"/>
-    <id>https://blog.yuhanle.com/2016/12/06/xcrun-error/</id>
-    <published>2016-12-06T05:03:29.000Z</published>
-    <updated>2018-07-05T01:21:04.712Z</updated>
-    
-    <content type="html"><![CDATA[<p>Xcode升级到8.3后 用命令进行打包 提示下面这个错误</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcrun: error: unable to find utility &quot;PackageApplication&quot;, not a developer tool or in PATH</span><br></pre></td></tr></table></figure><a id="more"></a><p>后面根据对比发现新版的Xcode少了这个PackageApplication<br>先去找个旧版的Xcode里面copy一份过来<br>放到下面这个目录：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/</span><br></pre></td></tr></table></figure><p>然后执行命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer/</span><br><span class="line">chmod +x /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/PackageApplication</span><br></pre></td></tr></table></figure><p>最后附上PackageApplication下载地址：</p><blockquote><p>链接:<a href="https://pan.baidu.com/s/1hstjpGS" target="_blank" rel="noopener">https://pan.baidu.com/s/1hstjpGS</a>  密码:jvdv</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Xcode升级到8.3后 用命令进行打包 提示下面这个错误&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;xcrun: error: unable to find utility &amp;quot;PackageApplication&amp;quot;, not a developer tool or in PATH&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="iOS" scheme="https://blog.yuhanle.com/categories/iOS/"/>
-    
-    
-      <category term="update" scheme="https://blog.yuhanle.com/tags/update/"/>
-    
-      <category term="error" scheme="https://blog.yuhanle.com/tags/error/"/>
     
   </entry>
   
