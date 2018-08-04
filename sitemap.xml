@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.yuhanle.com/2018/03/06/deploy-the-vue-cli-project-on-github-pages/</loc>
+    
+    <lastmod>2018-08-04T00:03:47.107Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.yuhanle.com/2015/06/24/ble-development-continuously-update/</loc>
     
     <lastmod>2018-07-31T09:06:19.056Z</lastmod>
@@ -180,13 +187,6 @@
     <loc>https://blog.yuhanle.com/2016/12/04/design-scan-function/</loc>
     
     <lastmod>2018-07-05T01:17:10.148Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.yuhanle.com/2018/03/06/deploy-the-vue-cli-project-on-github-pages/</loc>
-    
-    <lastmod>2018-07-05T01:16:52.891Z</lastmod>
     
   </url>
   
