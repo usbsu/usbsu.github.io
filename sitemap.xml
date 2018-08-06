@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.yuhanle.com/2018/05/13/rac-in-mvvm/</loc>
+    
+    <lastmod>2018-08-06T07:33:55.956Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.yuhanle.com/2018/03/06/deploy-the-vue-cli-project-on-github-pages/</loc>
     
     <lastmod>2018-08-04T00:03:47.107Z</lastmod>
