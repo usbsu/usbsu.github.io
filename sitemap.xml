@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.yuhanle.com/about/index.html</loc>
+    
+    <lastmod>2018-09-06T06:51:27.889Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.yuhanle.com/2018/07/16/dream-late-code-nostop/</loc>
     
     <lastmod>2018-09-06T06:42:01.635Z</lastmod>
@@ -89,13 +96,6 @@
     <loc>https://blog.yuhanle.com/2015/06/24/ble-development-continuously-update/</loc>
     
     <lastmod>2018-07-31T09:06:19.056Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.yuhanle.com/about/index.html</loc>
-    
-    <lastmod>2018-07-06T10:00:08.088Z</lastmod>
     
   </url>
   
