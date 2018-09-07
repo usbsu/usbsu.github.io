@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>煜寒了</title>
   
-  
+  <subtitle>关心粮食和蔬菜</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.yuhanle.com/"/>
@@ -36,29 +36,6 @@
     
     
       <category term="fastlane" scheme="https://blog.yuhanle.com/tags/fastlane/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>梦想虽晚，“码”不停蹄</title>
-    <link href="https://blog.yuhanle.com/2018/07/16/dream-late-code-nostop/"/>
-    <id>https://blog.yuhanle.com/2018/07/16/dream-late-code-nostop/</id>
-    <published>2018-07-16T05:59:43.000Z</published>
-    <updated>2018-09-06T06:42:01.635Z</updated>
-    
-    <content type="html"><![CDATA[<p>以梦为马，不负韶华。</p><p>我羡慕他们的故事，佩服他们的成就，相信很多人会跟我一样为他们的成功喝彩，毕竟这都是些励志的典型，而我在默默呐喊的同时，还有种淡淡的甜蜜，小小的幸福感，因为我也选择了这条路，我会这条路上走很远，这是属于我们的故事，有他，有她，不知道有天会不会有我。<br><a id="more"></a></p><p>梦想很遥远，可我们愿马不停蹄的前行，为了梦想而奋斗总是痛苦的，又总是快乐的，我知道，可我来了，这种感觉很幸福。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;以梦为马，不负韶华。&lt;/p&gt;
-&lt;p&gt;我羡慕他们的故事，佩服他们的成就，相信很多人会跟我一样为他们的成功喝彩，毕竟这都是些励志的典型，而我在默默呐喊的同时，还有种淡淡的甜蜜，小小的幸福感，因为我也选择了这条路，我会这条路上走很远，这是属于我们的故事，有他，有她，不知道有天会不会有我。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="晚码" scheme="https://blog.yuhanle.com/categories/%E6%99%9A%E7%A0%81/"/>
-    
-    
-      <category term="晚码" scheme="https://blog.yuhanle.com/tags/%E6%99%9A%E7%A0%81/"/>
     
   </entry>
   
@@ -504,6 +481,29 @@
     
     
       <category term="outu" scheme="https://blog.yuhanle.com/tags/outu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iOS工程中网络请求管理的想法</title>
+    <link href="https://blog.yuhanle.com/2016/02/25/about-ios-net-manager-idea/"/>
+    <id>https://blog.yuhanle.com/2016/02/25/about-ios-net-manager-idea/</id>
+    <published>2016-02-25T02:00:00.000Z</published>
+    <updated>2018-07-05T01:15:01.178Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近一直在想一些烧脑的逻辑问题。</p><p>在此之前，我们抛出了<a href="https://yuhanle.github.io/2016/01/04/a-perfect-package-afn-requests-demo/" target="_blank" rel="noopener">一个网络请求框架</a>，在这个框架中，能够很清晰的管理每一个请求，每一个回应，以及统一处理，特殊处理等，但对于开发人员来讲，这只是一个easy的文件目录而已。<a id="more"></a></p><p>目前这个框架仍然存在很多问题，例如请求重发机制有待优化，不支持冻结网络请求，还有在页面销毁时，不支持取消未完成的请求(ps:一次性取消所有请求，但这不是我希望的效果)</p><h5 id="先说说从新手以来对于网络请求管理这块的理解过程："><a href="#先说说从新手以来对于网络请求管理这块的理解过程：" class="headerlink" title="先说说从新手以来对于网络请求管理这块的理解过程："></a>先说说从新手以来对于网络请求管理这块的理解过程：</h5><p>说一下，我们讨论的前提是，希望无关请求都会正常cancel。</p><h6 id="1-统一单例类，管理所有请求"><a href="#1-统一单例类，管理所有请求" class="headerlink" title="1. 统一单例类，管理所有请求"></a>1. 统一单例类，管理所有请求</h6><p>该方法，提供一个单例类，还有几个请求API接口，然后在工程中任何需要网络请求的地方使用，加上url，相关参数以及callback，而且内部的核心代码也是直接与AFNetworking处理，方便快速，但是对于成百上千（这个数字可能会越来越大）的服务端接口来说，不易管理。</p><p>而且在取消全部请求的时候会出现一些意想不到的问题</p><blockquote><p>举个栗子</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">A页面push B页面</span><br><span class="line">B页面发出了请求1</span><br><span class="line">请求1完成之后需要A页面发送请求2</span><br><span class="line">假设这个时候网络不佳而B刚好销毁了</span><br><span class="line">这样A的请求2还没回来就被取消</span><br><span class="line">所以A的数据不能及时更新</span><br></pre></td></tr></table></figure><p>request:<br>直接调用<br>response：<br>统一处理<br>cancel:<br>取消全部请求</p><p>如下图<br><img src="http://7xqhcq.com1.z0.glb.clouddn.com/QQ20160223-0.png" alt="JZ"></p><h6 id="2-统一非单例类，分管请求"><a href="#2-统一非单例类，分管请求" class="headerlink" title="2.统一非单例类，分管请求"></a>2.统一非单例类，分管请求</h6><p>这种方法，创建一个类，每次调用请求的时候都new一个新的实例，然后由vc持有，这样做便于在页面dealloc时，直接取消当前页面发出的所有请求。请求管理类似于，谁请求，谁负责cancel。</p><p>很明显，这种方法大大增加了系统的开销，而且不符合设计思想，虽然可以方便的取消自己管理的请求，但是不支持取消全部请求。如果要支持取消全部请求的话，还需要一个管理类来管理管理请求的管理类，这样的话整个目录看起来横七竖八。</p><p>由于对回调的统一处理也是独立的，所以也会存在部分需求不满足的问题</p><blockquote><p>举个栗子</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">需求中存在token过期的问题</span><br><span class="line">此时队列中存在很多请求</span><br><span class="line">请求1收到了token过期的回应（一般token过期只会保留一次，因为旧token服务器不会帮你保存太多）</span><br><span class="line">需要立马做出处理，比如重新登录</span><br><span class="line">而此时请求2、请求3可能都已发出，或者已经收到回应</span><br><span class="line">由于这里的处理是独立的，难免会产生各种问题</span><br></pre></td></tr></table></figure><p>request:<br>创建新的实例，直接调用<br>response：<br>单独统一处理<br>cancel:<br>持有者取消独自管理的全部请求</p><h6 id="3-统一单例类，分管请求"><a href="#3-统一单例类，分管请求" class="headerlink" title="3.统一单例类，分管请求"></a>3.统一单例类，分管请求</h6><p>分管请求有很多种，例如可以根据功能、接口、或者页面属性来独自管理有共同特点的请求。</p><p>这里的独自管理，其实无非就是给请求加了一个标签，便于管理请求的时候，可以按照某一共同特征来管理。相比较第一种形式，他的优势在于可以按需求取消部分请求，比如在某个页面dealloc的时候，按照页面名称，取消请求队列中有关当前页面所有未完成的请求。</p><blockquote><p>举个栗子</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">首先支持按照标签取消请求</span><br><span class="line">其次统一处理可以在遇到突发情况（token过期）的时候，cancel所有请求</span><br></pre></td></tr></table></figure><p>request:<br>直接调用<br>response：<br>统一处理<br>cancel:<br>取消全部请求同时支持按照tag取消</p><h5 id="开源框架结构简析"><a href="#开源框架结构简析" class="headerlink" title="开源框架结构简析"></a>开源框架结构简析</h5><h6 id="1、YTKNetwork"><a href="#1、YTKNetwork" class="headerlink" title="1、YTKNetwork"></a>1、<a href="https://github.com/yuantiku/YTKNetwork" target="_blank" rel="noopener">YTKNetwork</a></h6><p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/QQ20160225-0.png" alt="YTK"></p><p>上面的截图来自<a href="https://github.com/yuantiku/YTKNetwork" target="_blank" rel="noopener">YTKNetwork</a>的设计框架，将服务端每个api也做简单的封装处理（例如图中的RegisterApi），使用起来很舒服，但是这样写下去，需要些成百上千个.h.m，想想都觉得不可思议，当然这只是一种设计模式，方便开拓使用者更广泛的思路。</p><p>我在工程中的做法都是根据功能，将服务端的api做了分类，接口中保留了服务端需要的info，由调用者填充即可。如下图<br><img src="http://7xqhcq.com1.z0.glb.clouddn.com/QQ20160225-2.png" alt="WS"></p><p>有兴趣的朋友可以下载我的<a href="https://github.com/yuhanle/WSApiInvoker" target="_blank" rel="noopener">Demo</a>捋一捋。</p><h6 id="2、MGJRequestManager"><a href="#2、MGJRequestManager" class="headerlink" title="2、MGJRequestManager"></a>2、<a href="https://github.com/mogujie/MGJRequestManager" target="_blank" rel="noopener">MGJRequestManager</a></h6><p><img src="http://7xqhcq.com1.z0.glb.clouddn.com/QQ20160225-1.png" alt="MGJ"></p><p>虽然这个框架仅有两个文件，但是功能很强大，而且支持缓存，用起来如图，我们可以简单的把他当做一个请求类来使用，最好还是配合YTK的模式，封装好请求和回应，接口统一管理，这样用起来才不失效率。</p><p>截图来自：<br><a href="https://github.com/lookingstars/nuomi" target="_blank" rel="noopener">JZNetworkSingleton</a><br>开源框架参考:<br><a href="https://github.com/yuantiku/YTKNetwork" target="_blank" rel="noopener">YTKNetwork</a><br><a href="https://github.com/mogujie/MGJRequestManager" target="_blank" rel="noopener">MGJRequestManager</a></p><p>看完YTK的框架设计，框架越复杂，功能越强大，用起来越方便</p><p>欢迎大家与我交流！！！</p><p>本站文章如无其他特殊说明，均为原创，转载请注明出处。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近一直在想一些烧脑的逻辑问题。&lt;/p&gt;
+&lt;p&gt;在此之前，我们抛出了&lt;a href=&quot;https://yuhanle.github.io/2016/01/04/a-perfect-package-afn-requests-demo/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;一个网络请求框架&lt;/a&gt;，在这个框架中，能够很清晰的管理每一个请求，每一个回应，以及统一处理，特殊处理等，但对于开发人员来讲，这只是一个easy的文件目录而已。
+    
+    </summary>
+    
+      <category term="iOS" scheme="https://blog.yuhanle.com/categories/iOS/"/>
+    
+    
+      <category term="iOS" scheme="https://blog.yuhanle.com/tags/iOS/"/>
     
   </entry>
   
