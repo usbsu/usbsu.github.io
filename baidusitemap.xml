@@ -3,11 +3,153 @@
 
 
     
+  <url>
+    <loc>https://blog.yuhanle.com/2017/01/22/see-words-as-face/</loc>
+    <lastmod>2018-10-24T13:17:17.150Z</lastmod>
+    <data>
+        <display>
+        <title>见字如面的过去一年</title>
+        <pubTime>2017-01-22T04:29:59.000Z</pubTime>
+        
+        <tag>see a word</tag>
+         
+         
+           
+             
+              <breadCrumb title="word" url="https://blog.yuhanle.com/categories/word/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
+  <url>
+    <loc>https://blog.yuhanle.com/2017/04/18/say-hello-work/</loc>
+    <lastmod>2018-10-24T13:17:17.149Z</lastmod>
+    <data>
+        <display>
+        <title>离开象牙塔以后</title>
+        <pubTime>2017-04-18T00:00:00.000Z</pubTime>
+        
+        <tag>motion</tag>
+         
+         
+           
+             
+              <breadCrumb title="suibi" url="https://blog.yuhanle.com/categories/suibi/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2018/05/13/rac-in-mvvm/</loc>
+    <lastmod>2018-10-24T13:17:17.148Z</lastmod>
+    <data>
+        <display>
+        <title>RAC 在 MVVM 中的常见用法</title>
+        <pubTime>2018-05-13T01:00:00.000Z</pubTime>
+        
+        <tag>rac</tag>
+         
+         
+           
+             
+              <breadCrumb title="rac" url="https://blog.yuhanle.com/categories/rac/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2016/08/21/passing-silent-silent-memories/</loc>
+    <lastmod>2018-10-24T13:17:17.147Z</lastmod>
+    <data>
+        <display>
+        <title>无言逝水 回忆无声</title>
+        <pubTime>2016-08-21T05:23:00.000Z</pubTime>
+        
+        <tag>prose</tag>
+         
+         
+           
+             
+              <breadCrumb title="prose" url="https://blog.yuhanle.com/categories/prose/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2016/11/30/oc-js-inpourjs-in-goodtime/</loc>
+    <lastmod>2018-10-24T13:17:17.145Z</lastmod>
+    <data>
+        <display>
+        <title>ObjC&JavaScript 交互，在恰当的时机注入对象</title>
+        <pubTime>2016-11-30T00:00:00.000Z</pubTime>
+        
+        <tag>tips</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2017/05/02/gcd-sync-parallel/</loc>
+    <lastmod>2018-10-24T13:17:17.144Z</lastmod>
+    <data>
+        <display>
+        <title>GCD 同步异步以及串并行详解</title>
+        <pubTime>2017-05-02T00:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>GCD</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2017/04/28/gcd-sync-barriers-groups-semaphore/</loc>
+    <lastmod>2018-10-24T13:17:17.143Z</lastmod>
+    <data>
+        <display>
+        <title>GCD 同步操作之 Resource Competition</title>
+        <pubTime>2017-04-28T00:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>GCD</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>https://blog.yuhanle.com/2018/08/06/fastlane-say-here/</loc>
-    <lastmod>2018-09-06T06:27:29.035Z</lastmod>
+    <lastmod>2018-10-24T13:17:17.142Z</lastmod>
     <data>
         <display>
         <title>使用 fastlane 进行 iOS 打包</title>
@@ -25,6 +167,132 @@
     </url>
 
     
+  <url>
+    <loc>https://blog.yuhanle.com/2016/12/04/design-scan-function/</loc>
+    <lastmod>2018-10-24T13:17:17.140Z</lastmod>
+    <data>
+        <display>
+        <title>如何设计扫一扫功能才能更优雅</title>
+        <pubTime>2016-12-04T00:00:00.000Z</pubTime>
+        
+        <tag>scan</tag>
+         
+         
+           
+             
+              <breadCrumb title="mobile" url="https://blog.yuhanle.com/categories/mobile/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2015/09/27/cornerstone-merge-operation-explain/</loc>
+    <lastmod>2018-10-24T13:17:17.138Z</lastmod>
+    <data>
+        <display>
+        <title>Cornerstone Merge操作详解</title>
+        <pubTime>2015-09-27T01:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2017/02/15/continuous-code-quality-sonarqube-install/</loc>
+    <lastmod>2018-10-24T13:17:17.137Z</lastmod>
+    <data>
+        <display>
+        <title>通过Sonar 初步构建代码持续审查</title>
+        <pubTime>2017-02-15T00:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>Sonar</tag>
+         
+        <tag>Quality</tag>
+         
+         
+           
+             
+              <breadCrumb title="continue" url="https://blog.yuhanle.com/categories/continue/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2015/06/24/ble-development-continuously-update/</loc>
+    <lastmod>2018-10-24T13:17:17.135Z</lastmod>
+    <data>
+        <display>
+        <title>iOS-BLE蓝牙开发持续更新</title>
+        <pubTime>2015-06-24T09:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2016/02/25/about-ios-net-manager-idea/</loc>
+    <lastmod>2018-10-24T13:17:17.134Z</lastmod>
+    <data>
+        <display>
+        <title>iOS工程中网络请求管理的想法</title>
+        <pubTime>2016-02-25T02:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://blog.yuhanle.com/2016/01/10/about-ble-intelligent-hd-demo-detailed/</loc>
+    <lastmod>2018-10-24T13:17:17.132Z</lastmod>
+    <data>
+        <display>
+        <title>一个关于蓝牙4.0的智能硬件Demo 详解</title>
+        <pubTime>2016-01-10T09:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
     
   <url>
     <loc>https://blog.yuhanle.com/2017/12/09/xocde9-2-and-iOS-8-1-image-unnormal/</loc>
@@ -40,26 +308,6 @@
            
              
               <breadCrumb title="tools" url="https://blog.yuhanle.com/categories/tools/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2018/05/13/rac-in-mvvm/</loc>
-    <lastmod>2018-09-06T06:05:40.960Z</lastmod>
-    <data>
-        <display>
-        <title>RAC 在 MVVM 中的常见用法</title>
-        <pubTime>2018-05-13T01:00:00.000Z</pubTime>
-        
-        <tag>rac</tag>
-         
-         
-           
-             
-              <breadCrumb title="rac" url="https://blog.yuhanle.com/categories/rac/"/>
           
         </display>
     </data>
@@ -111,46 +359,6 @@
 
     
   <url>
-    <loc>https://blog.yuhanle.com/2017/01/22/see-words-as-face/</loc>
-    <lastmod>2018-09-06T05:20:21.473Z</lastmod>
-    <data>
-        <display>
-        <title>见字如面的过去一年</title>
-        <pubTime>2017-01-22T04:29:59.000Z</pubTime>
-        
-        <tag>see a word</tag>
-         
-         
-           
-             
-              <breadCrumb title="word" url="https://blog.yuhanle.com/categories/word/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2017/04/18/say-hello-work/</loc>
-    <lastmod>2018-09-06T05:20:15.919Z</lastmod>
-    <data>
-        <display>
-        <title>离开象牙塔以后</title>
-        <pubTime>2017-04-18T00:00:00.000Z</pubTime>
-        
-        <tag>motion</tag>
-         
-         
-           
-             
-              <breadCrumb title="suibi" url="https://blog.yuhanle.com/categories/suibi/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://blog.yuhanle.com/2014/05/20/reason-why-home-here/</loc>
     <lastmod>2018-09-06T05:20:10.017Z</lastmod>
     <data>
@@ -164,46 +372,6 @@
            
              
               <breadCrumb title="suibi" url="https://blog.yuhanle.com/categories/suibi/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2016/12/04/design-scan-function/</loc>
-    <lastmod>2018-09-06T05:18:32.774Z</lastmod>
-    <data>
-        <display>
-        <title>如何设计扫一扫功能才能更优雅</title>
-        <pubTime>2016-12-04T00:00:00.000Z</pubTime>
-        
-        <tag>scan</tag>
-         
-         
-           
-             
-              <breadCrumb title="mobile" url="https://blog.yuhanle.com/categories/mobile/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2015/06/24/ble-development-continuously-update/</loc>
-    <lastmod>2018-07-31T09:06:19.056Z</lastmod>
-    <data>
-        <display>
-        <title>iOS-BLE蓝牙开发持续更新</title>
-        <pubTime>2015-06-24T09:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
           
         </display>
     </data>
@@ -316,46 +484,6 @@
 
     
   <url>
-    <loc>https://blog.yuhanle.com/2016/08/21/passing-silent-silent-memories/</loc>
-    <lastmod>2018-07-05T01:19:57.135Z</lastmod>
-    <data>
-        <display>
-        <title>无言逝水 回忆无声</title>
-        <pubTime>2016-08-21T05:23:00.000Z</pubTime>
-        
-        <tag>prose</tag>
-         
-         
-           
-             
-              <breadCrumb title="prose" url="https://blog.yuhanle.com/categories/prose/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2016/11/30/oc-js-inpourjs-in-goodtime/</loc>
-    <lastmod>2018-07-05T01:19:22.758Z</lastmod>
-    <data>
-        <display>
-        <title>ObjC&JavaScript 交互，在恰当的时机注入对象</title>
-        <pubTime>2016-11-30T00:00:00.000Z</pubTime>
-        
-        <tag>tips</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://blog.yuhanle.com/2017/12/06/macos-high-sierra-with-cocoapods/</loc>
     <lastmod>2018-07-05T01:19:13.989Z</lastmod>
     <data>
@@ -398,94 +526,6 @@
 
     
   <url>
-    <loc>https://blog.yuhanle.com/2017/05/02/gcd-sync-parallel/</loc>
-    <lastmod>2018-07-05T01:17:36.614Z</lastmod>
-    <data>
-        <display>
-        <title>GCD 同步异步以及串并行详解</title>
-        <pubTime>2017-05-02T00:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>GCD</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2017/04/28/gcd-sync-barriers-groups-semaphore/</loc>
-    <lastmod>2018-07-05T01:17:30.285Z</lastmod>
-    <data>
-        <display>
-        <title>GCD 同步操作之 Resource Competition</title>
-        <pubTime>2017-04-28T00:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>GCD</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2015/09/27/cornerstone-merge-operation-explain/</loc>
-    <lastmod>2018-07-05T01:16:45.011Z</lastmod>
-    <data>
-        <display>
-        <title>Cornerstone Merge操作详解</title>
-        <pubTime>2015-09-27T01:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2017/02/15/continuous-code-quality-sonarqube-install/</loc>
-    <lastmod>2018-07-05T01:16:38.948Z</lastmod>
-    <data>
-        <display>
-        <title>通过Sonar 初步构建代码持续审查</title>
-        <pubTime>2017-02-15T00:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-        <tag>Sonar</tag>
-         
-        <tag>Quality</tag>
-         
-         
-           
-             
-              <breadCrumb title="continue" url="https://blog.yuhanle.com/categories/continue/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://blog.yuhanle.com/2015/04/20/are-you-good-or-not/</loc>
     <lastmod>2018-07-05T01:15:24.673Z</lastmod>
     <data>
@@ -519,46 +559,6 @@
            
              
               <breadCrumb title="suibi" url="https://blog.yuhanle.com/categories/suibi/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2016/02/25/about-ios-net-manager-idea/</loc>
-    <lastmod>2018-07-05T01:15:01.178Z</lastmod>
-    <data>
-        <display>
-        <title>iOS工程中网络请求管理的想法</title>
-        <pubTime>2016-02-25T02:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://blog.yuhanle.com/2016/01/10/about-ble-intelligent-hd-demo-detailed/</loc>
-    <lastmod>2018-07-05T01:14:57.444Z</lastmod>
-    <data>
-        <display>
-        <title>一个关于蓝牙4.0的智能硬件Demo 详解</title>
-        <pubTime>2016-01-10T09:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
-             
-              <breadCrumb title="iOS" url="https://blog.yuhanle.com/categories/iOS/"/>
           
         </display>
     </data>
